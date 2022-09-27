@@ -1,18 +1,33 @@
-import React from "react";
+
 import Image from "../subComponents/Image";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Loader from "../subComponents/Loader";
 
 interface ImageProps {
   images: any;
+  fetchRequest: any;
+
 }
 
-const Images = ({ images }: ImageProps) => {
+const Images = ({ images, fetchRequest}: ImageProps) => {
   return (
-    <section className=" flex flex-col items-center justify-center">
-      <div className=" grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 my-6 gap-2 mx-3 ">
-        {images.map((image: any, i: number) => (
-          <Image image={image} key={image.id} />
-        ))}
-      </div>
+    <section className=" ">
+      <InfiniteScroll
+        dataLength={images.length}
+        next={fetchRequest}
+        hasMore={true}
+        loader={<Loader/>}
+      >
+        <div className="  columns-1 md:columns-3 bg-red-300 ">
+       {
+
+            images.map((image: any, i: number) => (
+              <Image image={image} key={image.id} />
+            ))
+       }
+        
+        </div>
+      </InfiniteScroll>
     </section>
   );
 };
