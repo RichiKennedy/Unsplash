@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { MyContextProvider } from "./context/DataContext";
 import Header from "./components/Header";
 import Images from "./components/Images";
 
@@ -12,23 +12,36 @@ import Images from "./components/Images";
 const REACT_APP_KEY = process.env.REACT_APP_KEY;
 
 function App() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = React.useState<any[]>([]);
+  const [inputValue, setInputValue] = useState("");
+  const [page, setPage] = useState(1);
+  
 
-  const fetchRequest = async (input_value: string) => {
+
+  const fetchRequest = async () => {
     const data = await fetch(
-      `https://api.unsplash.com/search/photos?page=1&per_page=30&query=${input_value}&client_id=${REACT_APP_KEY}`
+      `https://api.unsplash.com/search/photos?page=${page}&per_page=10&query=${inputValue}&client_id=${REACT_APP_KEY}`
     );
+    //console.log(`https://api.unsplash.com/search/photos?page=${page}&per_page=10&query=${inputValue}&client_id=${REACT_APP_KEY}`)
     const jsonData = await data.json();
-    const result = await jsonData.results; 
-    console.log(result);
-    setImages(result);
+    const result = await jsonData.results;
+
+    setImages([...images, ...result]);
+    setPage(page + 1);
+   
   };
 
   return (
-    <div className=" w-full ">
-      <Header fetchRequest={fetchRequest} />
-      <Images images={images} />
-    </div>
+    <MyContextProvider>
+      <div className=" w-full ">
+        <Header
+          fetchRequest={fetchRequest}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+        />
+        <Images images={images} fetchRequest={fetchRequest} />
+      </div>
+    </MyContextProvider>
   );
 }
 
