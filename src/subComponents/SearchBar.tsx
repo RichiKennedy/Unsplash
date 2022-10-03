@@ -6,9 +6,9 @@ const SearchBar = () => {
   const { someFunc, inputValue, setInputValue } = useContext(MyContext);
 
   return (
-    <div className=" flex items-center border-2 rounded-full py-2 shadow-sm w-[300px] md:w-[400px] ">
+    <div className=" flex items-center border-2 rounded-lg py-2 shadow-sm w-[60vw] bg-white   ">
       <input
-        className=" pl-5 bg-transparent outline-none flex-grow text-sm text-white placeholder-white  "
+        className=" pl-5 bg-transparent outline-none flex-grow text-sm text-black placeholder-gray-400  "
         type="text"
         placeholder="Search photos"
         value={inputValue}
