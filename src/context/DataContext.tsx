@@ -1,6 +1,4 @@
 import { createContext, useState, ReactNode } from "react";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
 export type ContextShape = {
   someFunc: (arg?: boolean) => void;
@@ -8,6 +6,7 @@ export type ContextShape = {
   setInputValue: (arg: string) => void;
   images: Array<string>;
   hasError: boolean;
+  setHasError: (arg: boolean) => void;
 };
 
 export type ContextProps = {
@@ -22,6 +21,12 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [hasError, setHasError] = useState(false);
+
+  if (hasError === true) {
+    setTimeout(() => {
+      setHasError(false);
+    }, 5000);
+  }
 
   const someFunc = async (boolean: boolean = false) => {
     // if true reset page and images
@@ -88,6 +93,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setInputValue,
         images,
         hasError,
+        setHasError,
       }}
     >
       {children}
