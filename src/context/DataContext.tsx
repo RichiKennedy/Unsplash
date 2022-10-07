@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 
 export type ContextShape = {
   someFunc: (arg?: boolean) => void;
@@ -7,6 +7,8 @@ export type ContextShape = {
   images: Array<string>;
   hasError: boolean;
   setHasError: (arg: boolean) => void;
+  hasApiError: boolean;
+  setHasApiError: (arg: boolean) => void;
 };
 
 export type ContextProps = {
@@ -21,12 +23,22 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [hasError, setHasError] = useState(false);
+  const [hasApiError, setHasApiError] = useState(false)
 
-  if (hasError === true) {
-    setTimeout(() => {
-      setHasError(false);
-    }, 5000);
-  }
+  
+  useEffect(() => {
+    if (hasError === true) {
+      setTimeout(() => {
+        setHasError(false);
+     
+      }, 5000);
+    } if (hasApiError === true) {
+      setTimeout(() => {
+        setHasApiError(false)
+      }, 5000)
+    }
+
+  }, [hasError, hasApiError])
 
   const someFunc = async (boolean: boolean = false) => {
     // if true reset page and images
@@ -60,12 +72,13 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         if (!response.ok) {
           // get error message from body or default to response status
           // Do something with the response toast
-          console.log("!response");
+          setHasApiError(true);
+          console.log('api error :' + hasApiError)
         }
       })
       .catch((error) => {
-        console.log(error);
-        // Do something with the response toast
+        setHasApiError(true);
+          console.log('catch error :' + hasApiError)
       });
 
     //old code below
@@ -94,6 +107,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         images,
         hasError,
         setHasError,
+        hasApiError,
+        setHasApiError,
       }}
     >
       {children}
