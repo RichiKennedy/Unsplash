@@ -3,12 +3,14 @@ import Header from "./components/Header";
 import Images from "./components/Images";
 
 import Error from "./subComponents/Error";
+import ApiError from "./subComponents/ApiError";
 
 function App() {
   return (
     <MyContextProvider>
       <div className=" w-[100vw]">
-        <Error/>
+        <Error />
+        <ApiError />
         <Header />
         <Images />
       </div>
