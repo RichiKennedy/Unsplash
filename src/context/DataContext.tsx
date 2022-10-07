@@ -81,21 +81,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
           console.log('catch error :' + hasApiError)
       });
 
-    //old code below
-    // const jsonData = await data.json();
-    // const result = await jsonData.results;
-    // console.log(result);
-    // if (result.length === 0) {
-    //   console.log("error");
-    // } else {
-    //   console.log("this works");
-    // }
-
-    // setImages(boolean ? [...result] : [...images, ...result]);
-
-    // setPage(page + 1);
-    // if (page > 1) {
-    // }
+    
   };
 
   return (
