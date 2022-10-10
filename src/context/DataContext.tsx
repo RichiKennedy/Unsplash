@@ -39,6 +39,10 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   }, [hasError, hasApiError]);
 
   const fetchUnsplashImages = async (boolean: boolean = false) => {
+<<<<<<< HEAD
+=======
+    // if true reset page and images
+>>>>>>> 4db4d7f (refactor: remove comments and clg from finished code)
     const apiPage = boolean ? 1 : page;
 
     fetch(
@@ -66,6 +70,13 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       .catch((error) => {
         setHasApiError(true);
       });
+<<<<<<< HEAD
+=======
+
+    // const randomImage = async () => {
+    //   fetch(`https://api.unsplash.com/photos/random?`)
+    // }
+>>>>>>> 4db4d7f (refactor: remove comments and clg from finished code)
   };
 
   return (
