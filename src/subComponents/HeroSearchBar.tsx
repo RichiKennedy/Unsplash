@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import MyContext from "../context/DataContext";
 
-const SearchBar = () => {
+const HeroSearchBar = () => {
   const { fetchUnsplashImages, inputValue, setInputValue } = useContext(MyContext);
 
   return (
-    <div className=" flex items-center border-2 rounded-full py-2 shadow-sm w-[70vw] sm:w-[50vw] bg-white   ">
+    <div className=" flex items-center  rounded-sm py-2 shadow-sm w-full mt-5 bg-white   ">
       <input
         className=" pl-5 bg-transparent outline-none flex-grow text-sm text-black placeholder-gray-400  "
         type="text"
@@ -23,4 +23,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default HeroSearchBar;

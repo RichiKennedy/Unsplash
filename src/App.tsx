@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Images from "./components/Images";
 import Error from "./subComponents/Error";
 import ApiError from "./subComponents/ApiError";
+import Hero from "./components/Hero";
 
 
 
@@ -13,6 +14,7 @@ function App() {
         <Error />
         <ApiError />
         <Header />
+        <Hero/>
         <Images />
       </div>
     </MyContextProvider>

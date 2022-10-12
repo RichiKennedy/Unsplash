@@ -1,5 +1,20 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
 
+interface Urls {
+  full: string;
+}
+
+interface User {
+  name: string;
+}
+
+interface Image {
+  urls: Urls;
+  alt_description: null | string;
+  id: number;
+  user: User;
+}
+
 export type ContextShape = {
   fetchUnsplashImages: (arg?: boolean) => void;
   inputValue: string;
@@ -9,6 +24,8 @@ export type ContextShape = {
   setHasError: (arg: boolean) => void;
   hasApiError: boolean;
   setHasApiError: (arg: boolean) => void;
+  randomImage: Image;
+  getRandomImage: () => void;
 };
 
 export type ContextProps = {
@@ -20,6 +37,7 @@ const REACT_APP_KEY = process.env.REACT_APP_KEY;
 
 export const MyContextProvider = ({ children }: ContextProps) => {
   const [images, setImages] = useState<Array<string>>([]);
+  const [randomImage, setRandomImage] = useState<Image>({} as Image);
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [hasError, setHasError] = useState(false);
@@ -68,6 +86,34 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       });
   };
 
+  const getRandomImage = () => {
+    const REACT_APP_RANDOM_IMAGE_KEY = process.env.REACT_APP_RANDOM_IMAGE_KEY;
+    const randomImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`;
+
+    fetch(randomImageUrl)
+      .then(async (res) => {
+        if (res.ok) {
+          const data = await res.json();
+          const result = await data;
+          if (result.length) {
+            setRandomImage(result[0]);
+          } else {
+            setHasError(true);
+          }
+        }
+        if (!res.ok) {
+          setHasApiError(true);
+        }
+      })
+      .catch((error) => {
+        setHasApiError(true);
+      });
+  };
+
+  useEffect(() => {
+    getRandomImage();
+  }, []);
+
   return (
     <MyContext.Provider
       value={{
@@ -79,6 +125,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setHasError,
         hasApiError,
         setHasApiError,
+        randomImage,
+        getRandomImage,
       }}
     >
       {children}
