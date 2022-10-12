@@ -11,7 +11,7 @@ const Header = () => {
 
   useEffect(() => {
     const changeColor = () => {
-      if (window.scrollY >= 675) {
+      if (window.scrollY >= 145) {
         setColor("white");
         setTextColor("black");
       
@@ -37,7 +37,7 @@ const Header = () => {
           className=" text-white font-bold "
         >
          
-       <FaUnsplash className=" h-14 w-14"/>
+       <FaUnsplash className="h-11 w-11 sm:h-14 sm:w-14"/>
         </h1>
        
           <SearchBar />
