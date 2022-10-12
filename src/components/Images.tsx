@@ -8,13 +8,13 @@ import Image from "../subComponents/Image";
 
 
 const Images = () => {
-  const { images, someFunc } = useContext(MyContext);
+  const { images, fetchUnsplashImages } = useContext(MyContext);
 
   return (
     <section className="flex items-center justify-center p-5  w-[100vw] ">
       <InfiniteScroll
         dataLength={images.length}
-        next={() => someFunc()}
+        next={() => fetchUnsplashImages()}
         hasMore={true}
         loader={<Loader />}
         hasChildren={true}

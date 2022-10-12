@@ -1,7 +1,7 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
 
 export type ContextShape = {
-  someFunc: (arg?: boolean) => void;
+  fetchUnsplashImages: (arg?: boolean) => void;
   inputValue: string;
   setInputValue: (arg: string) => void;
   images: Array<string>;
@@ -40,7 +40,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
 
   }, [hasError, hasApiError])
 
-  const someFunc = async (boolean: boolean = false) => {
+  const fetchUnsplashImages = async (boolean: boolean = false) => {
     // if true reset page and images
     const apiPage = boolean ? 1 : page;
 
@@ -87,7 +87,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   return (
     <MyContext.Provider
       value={{
-        someFunc,
+        fetchUnsplashImages,
         inputValue,
         setInputValue,
         images,
