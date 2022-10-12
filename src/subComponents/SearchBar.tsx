@@ -3,12 +3,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import MyContext from "../context/DataContext";
 
 const SearchBar = () => {
-<<<<<<< HEAD
-  const { fetchUnsplashImages, inputValue, setInputValue } =
-    useContext(MyContext);
-=======
   const { fetchUnsplashImages, inputValue, setInputValue } = useContext(MyContext);
->>>>>>> 4db4d7f (refactor: remove comments and clg from finished code)
 
   return (
     <div className=" flex items-center border-2 rounded-full py-2 shadow-sm w-[50vw] bg-white   ">

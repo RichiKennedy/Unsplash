@@ -21,11 +21,7 @@ const Error = () => {
             />
           </div>
           <div className="flex items-center border border-t-0 yellow-red-400 rounded-b bg-yellow-100 px-4 py-3 text-yellow-700 h-[50%]">
-<<<<<<< HEAD
-            <p className=" md:text-xs  "> Search Error!!</p>
-=======
             <p className=" md:text-xs  "> Search Result Not Found!!</p>
->>>>>>> 4db4d7f (refactor: remove comments and clg from finished code)
           </div>
         </div>
       ) : null}

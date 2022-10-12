@@ -59,10 +59,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   }, [hasError, hasApiError]);
 
   const fetchUnsplashImages = async (boolean: boolean = false) => {
-<<<<<<< HEAD
-=======
     // if true reset page and images
->>>>>>> 4db4d7f (refactor: remove comments and clg from finished code)
     const apiPage = boolean ? 1 : page;
 
     fetch(
@@ -72,12 +69,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         if (response.ok) {
           const jsonData = await response.json();
           const result = await jsonData.results;
-<<<<<<< HEAD
-
-=======
          
           // if your array is not empty, then display images,
->>>>>>> 2540b2d (feat: add random unsplash image to header background)
           if (result.length > 1) {
             setImages(boolean ? [...result] : [...images, ...result]);
             setPage(page + 1);
@@ -95,16 +88,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       .catch((error) => {
         setHasApiError(true);
       });
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
-    // const randomImage = async () => {
-    //   fetch(`https://api.unsplash.com/photos/random?`)
-    // }
->>>>>>> 4db4d7f (refactor: remove comments and clg from finished code)
-=======
->>>>>>> 2540b2d (feat: add random unsplash image to header background)
   };
   
   
