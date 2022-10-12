@@ -24,7 +24,7 @@ export type ContextShape = {
   setHasError: (arg: boolean) => void;
   hasApiError: boolean;
   setHasApiError: (arg: boolean) => void;
-  randomImage: Image[];
+  randomImage: Image;
   getRandomImage: () => void;
 };
 
@@ -37,7 +37,7 @@ const REACT_APP_KEY = process.env.REACT_APP_KEY;
 
 export const MyContextProvider = ({ children }: ContextProps) => {
   const [images, setImages] = useState<Array<string>>([]);
-  const [randomImage, setRandomImage] = useState<Array<Image>>([]);
+  const [randomImage, setRandomImage] = useState<Image>({} as Image);
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [hasError, setHasError] = useState(false);
@@ -96,18 +96,17 @@ export const MyContextProvider = ({ children }: ContextProps) => {
           const data = await res.json();
           const result = await data;
           if (result.length) {
-            setRandomImage(result);
-            console.log(result);
+            setRandomImage(result[0]);
           } else {
-            console.log("error: image does not exist");
+            setHasError(true);
           }
         }
         if (!res.ok) {
-          console.log("Api error");
+          setHasApiError(true);
         }
       })
       .catch((error) => {
-        console.log("Catch error");
+        setHasApiError(true);
       });
   };
 

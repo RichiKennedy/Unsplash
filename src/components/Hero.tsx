@@ -18,11 +18,11 @@ const Hero = () => {
         height={600}
         width={1000}
         className=" object-cover w-full h-full"
-        src={randomImage[0]?.urls?.full}
+        src={randomImage?.urls?.full}
         alt={
-          randomImage[0]?.alt_description ? randomImage[0].alt_description : ""
+          randomImage?.alt_description ? randomImage.alt_description : ""
         }
-        key={randomImage[0]?.id}
+        key={randomImage?.id}
       />
       <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/40 text-white flex items-center justify-between flex-col">
         <div
@@ -39,7 +39,7 @@ const Hero = () => {
         <div className="flex items-center p-5 gap-2 h-[80px]  w-full">
           <h1 className=" text-gray-200">
             <strong>Photo</strong> by{" "}
-            <strong> {randomImage[0]?.user.name} </strong>{" "}
+            <strong> {randomImage?.user?.name} </strong>{" "}
           </h1>
         </div>
       </div>
