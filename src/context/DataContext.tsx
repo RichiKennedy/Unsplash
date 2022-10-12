@@ -1,18 +1,18 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
 
 interface Urls {
-  full: string
+  full: string;
 }
 
 interface User {
-  name: string
+  name: string;
 }
 
 interface Image {
-  urls: Urls
-  alt_description: null | string
-  id: number
-  user: User
+  urls: Urls;
+  alt_description: null | string;
+  id: number;
+  user: User;
 }
 
 export type ContextShape = {
@@ -26,7 +26,6 @@ export type ContextShape = {
   setHasApiError: (arg: boolean) => void;
   randomImage: Image[];
   getRandomImage: () => void;
- 
 };
 
 export type ContextProps = {
@@ -44,7 +43,6 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [hasError, setHasError] = useState(false);
   const [hasApiError, setHasApiError] = useState(false);
 
- 
   useEffect(() => {
     if (hasError === true) {
       setTimeout(() => {
@@ -59,7 +57,6 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   }, [hasError, hasApiError]);
 
   const fetchUnsplashImages = async (boolean: boolean = false) => {
-    // if true reset page and images
     const apiPage = boolean ? 1 : page;
 
     fetch(
@@ -69,8 +66,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         if (response.ok) {
           const jsonData = await response.json();
           const result = await jsonData.results;
-         
-          // if your array is not empty, then display images,
+
           if (result.length > 1) {
             setImages(boolean ? [...result] : [...images, ...result]);
             setPage(page + 1);
@@ -88,49 +84,36 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       .catch((error) => {
         setHasApiError(true);
       });
-
   };
-  
-  
 
   const getRandomImage = () => {
-   
-    const REACT_APP_RANDOM_IMAGE_KEY = process.env.REACT_APP_RANDOM_IMAGE_KEY
+    const REACT_APP_RANDOM_IMAGE_KEY = process.env.REACT_APP_RANDOM_IMAGE_KEY;
     const randomImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`;
 
-    fetch(randomImageUrl).then(async (res) => {
-  
-      if (res.ok) {
-        const data = await res.json();
-        const result = await data;
-        if (result.length) {
-          setRandomImage(result);
-          console.log(result)
-        } else {
-          console.log('error: image does not exist')
+    fetch(randomImageUrl)
+      .then(async (res) => {
+        if (res.ok) {
+          const data = await res.json();
+          const result = await data;
+          if (result.length) {
+            setRandomImage(result);
+            console.log(result);
+          } else {
+            console.log("error: image does not exist");
+          }
         }
-          
-      } if (!res.ok) {
-        console.log("Api error");
-      }
-    })
-    .catch((error) => {
-      console.log('Catch error')
-    })
-
-  }
+        if (!res.ok) {
+          console.log("Api error");
+        }
+      })
+      .catch((error) => {
+        console.log("Catch error");
+      });
+  };
 
   useEffect(() => {
-    getRandomImage()
-  console.log('i fire once')
-  }, [])
-  // useEffect(() => {
-  //   if (!randomImage.length) {
-      
-
-  //     console.log('anything')
-  //   }
-  // }, []);
+    getRandomImage();
+  }, []);
 
   return (
     <MyContext.Provider
@@ -145,7 +128,6 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setHasApiError,
         randomImage,
         getRandomImage,
-        
       }}
     >
       {children}
