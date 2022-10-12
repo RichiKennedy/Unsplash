@@ -23,25 +23,22 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [hasError, setHasError] = useState(false);
-  const [hasApiError, setHasApiError] = useState(false)
+  const [hasApiError, setHasApiError] = useState(false);
 
-  
   useEffect(() => {
     if (hasError === true) {
       setTimeout(() => {
         setHasError(false);
-     
       }, 5000);
-    } if (hasApiError === true) {
-      setTimeout(() => {
-        setHasApiError(false)
-      }, 5000)
     }
-
-  }, [hasError, hasApiError])
+    if (hasApiError === true) {
+      setTimeout(() => {
+        setHasApiError(false);
+      }, 5000);
+    }
+  }, [hasError, hasApiError]);
 
   const fetchUnsplashImages = async (boolean: boolean = false) => {
-    // if true reset page and images
     const apiPage = boolean ? 1 : page;
 
     fetch(
@@ -49,39 +46,26 @@ export const MyContextProvider = ({ children }: ContextProps) => {
     )
       .then(async (response) => {
         if (response.ok) {
-          // you did get a response, api is happy
-
           const jsonData = await response.json();
           const result = await jsonData.results;
-          console.log(result);
-          // if your array is not empty, then display images,
+
           if (result.length > 1) {
             setImages(boolean ? [...result] : [...images, ...result]);
             setPage(page + 1);
             if (page > 1) {
             }
-
-            // if it is empty, then call the toast to say nothing found
           } else {
             setHasError(true);
-
-            console.log("should be true");
           }
         }
 
         if (!response.ok) {
-          // get error message from body or default to response status
-          // Do something with the response toast
           setHasApiError(true);
-          console.log('api error :' + hasApiError)
         }
       })
       .catch((error) => {
         setHasApiError(true);
-          console.log('catch error :' + hasApiError)
       });
-
-    
   };
 
   return (

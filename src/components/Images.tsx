@@ -1,11 +1,8 @@
-
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../subComponents/Loader";
 import { useContext } from "react";
 import MyContext from "../context/DataContext";
 import Image from "../subComponents/Image";
-
-
 
 const Images = () => {
   const { images, fetchUnsplashImages } = useContext(MyContext);
@@ -22,7 +19,6 @@ const Images = () => {
       >
         {images.map((image: any) => (
           <Image image={image} key={image.id} />
-        
         ))}
       </InfiniteScroll>
     </section>
