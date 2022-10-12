@@ -24,7 +24,7 @@ const Hero = () => {
         alt={randomImage[0]?.alt_description ? randomImage[0].alt_description : ""}
         key={randomImage[0]?.id}
       />
-      <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/20 text-white flex justify-between items-end">
+      <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/70 text-white flex justify-between items-end">
         <div className="">
           <h1> Unsplash </h1>
           <p>The internet’s source for visuals.
