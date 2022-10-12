@@ -1,0 +1,15 @@
+#slide {
+    animation:  slide 0.5s ease-in-out forwards, slideBack 0.5s ease-in-out forwards 4.5s;
+}
+
+
+@keyframes slideBack {
+    
+    from {
+        
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
