@@ -26,6 +26,7 @@ export type ContextShape = {
   setHasApiError: (arg: boolean) => void;
   randomImage: Image;
   getRandomImage: () => void;
+  displayRandomImages: () => void;
 };
 
 export type ContextProps = {
@@ -42,6 +43,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [inputValue, setInputValue] = useState("");
   const [hasError, setHasError] = useState(false);
   const [hasApiError, setHasApiError] = useState(false);
+  const [theCount, setTheCount] = useState(10)
 
   useEffect(() => {
     if (hasError === true) {
@@ -58,6 +60,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
 
   const fetchUnsplashImages = async (boolean: boolean = false) => {
     const apiPage = boolean ? 1 : page;
+    //console.log('anything')
 
     fetch(
       `https://api.unsplash.com/search/photos?page=${apiPage}&per_page=10&query=${inputValue}&client_id=${REACT_APP_KEY}`
@@ -113,6 +116,37 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   useEffect(() => {
     getRandomImage();
   }, []);
+  const displayRandomImages = () => {
+    const REACT_APP_RANDOM_IMAGE_KEY = process.env.REACT_APP_RANDOM_IMAGE_KEY;
+    const displayRandomImagesUrl = `https://api.unsplash.com/photos/random?count=${theCount}&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`;
+
+    fetch(displayRandomImagesUrl)
+      .then(async (res) => {
+        if (res.ok) {
+          const data = await res.json();
+          const result = await data;
+          if (result.length && inputValue === "") {
+            setImages( [...images, ...result]);
+            setTheCount(theCount + 10)
+            if (theCount > 10) {
+
+            }
+          } else {
+            setHasError(true);
+          }
+        }
+        if (!res.ok) {
+          setHasApiError(true);
+        }
+      })
+      .catch((error) => {
+        setHasApiError(true);
+      });
+  };
+
+  useEffect(() => {
+    displayRandomImages();
+  }, []);
 
   return (
     <MyContext.Provider
@@ -127,6 +161,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setHasApiError,
         randomImage,
         getRandomImage,
+        displayRandomImages
       }}
     >
       {children}
