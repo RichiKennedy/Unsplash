@@ -29,7 +29,7 @@ const Hero = () => {
           style={{ transform: `translateY(${offSetY * 0.35}px)` }}
           className=" h-full w-full p-10 md:max-w-2xl md:p-0 flex items-center justify-center flex-col text-left"
         >
-          <h1 className=" w-full text-5xl mb-5 font-bold"> Unsplash </h1>
+          <h1 className=" w-full text-5xl mb-5 font-bold"> Unsplashed </h1>
           <p className=" w-full">
             The internet’s source for visuals. <br />
             Powered by creators everywhere.
