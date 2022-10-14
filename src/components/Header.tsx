@@ -21,15 +21,15 @@ const Header = () => {
 
   return (
     <div
-      className=" fixed flex items-center py-10 w-full h-[10vh] duration-150 ease-in-out top-0 z-20 shadow-md"
+      className="fixed flex items-center py-10 w-full h-[10vh] duration-150 ease-in-out top-0 z-20 shadow-md"
       style={{ backgroundColor: `${color}` }}
     >
-      <div className="  gap-5 pl-5 flex items-center justify-center  ">
+      <div className="gap-5 pl-5 flex items-center justify-center">
         <h1
           style={{ color: `${textColor}` }}
-          className=" text-white font-bold "
+          className="text-white font-bold"
         >
-          <FaUnsplash className="h-11 w-11 sm:h-14 sm:w-14" />
+          <FaUnsplash className="h-11 w-11 sm:h-14 sm:w-14"/>
         </h1>
 
         <SearchBar />

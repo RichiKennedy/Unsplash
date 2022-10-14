@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import MyContext from "../context/DataContext";
 import { GrClose } from "react-icons/gr";
 import "../styles/animations.css";
 
 const Error = () => {
   const { hasError, setHasError } = useContext(MyContext);
+  useEffect(() => {
+    if (hasError === true) {
+      setTimeout(() => {
+        setHasError(false);
+      }, 5000);
+    }
+  }, [hasError, setHasError]);
 
   return (
     <>
