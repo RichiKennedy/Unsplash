@@ -26,8 +26,7 @@ const Image = ({ image }: ImageProps) => {
         </div>
         <div className="flex items-center justify-end p-5  h-[80px]   ">
           <h1>
-            {" "}
-            <BsFillArrowDownSquareFill className=" text-4xl cursor-pointer" />{" "}
+          <BsFillArrowDownSquareFill className=" text-4xl cursor-pointer" />{" "}
           </h1>
         </div>
       </div>
