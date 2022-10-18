@@ -4,7 +4,7 @@ import Images from "./components/Images";
 import Error from "./subComponents/Error";
 import ApiError from "./subComponents/ApiError";
 import Hero from "./components/Hero";
-import RandomImageGallery from "./components/RandomImageGallery";
+// import RandomImageGallery from "./components/RandomImageGallery";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Header />
         <Hero/>
         <Images />
-        <RandomImageGallery />
+        {/* <RandomImageGallery /> */}
       </div>
     </MyContextProvider>
   );
