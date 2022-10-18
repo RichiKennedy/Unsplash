@@ -1,9 +1,9 @@
 import React from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { BsFillArrowDownSquareFill } from "react-icons/bs";
-
+import { imageType } from "../types/imageTypes";
 interface ImageProps {
-  image: any;
+  image: imageType;
 }
 
 const Image = ({ image }: ImageProps) => {
@@ -26,8 +26,7 @@ const Image = ({ image }: ImageProps) => {
         </div>
         <div className="flex items-center justify-end p-5  h-[80px]   ">
           <h1>
-            {" "}
-            <BsFillArrowDownSquareFill className=" text-4xl cursor-pointer" />{" "}
+          <BsFillArrowDownSquareFill className=" text-4xl cursor-pointer" />{" "}
           </h1>
         </div>
       </div>
