@@ -1,20 +1,5 @@
 import { createContext, useState, ReactNode, useEffect, useRef } from "react";
-
-interface Urls {
-  full: string;
-  small: string;
-}
-
-interface User {
-  name: null | string;
-}
-
-interface Image {
-  urls: Urls;
-  alt_description: null | string;
-  id: number;
-  user: User;
-}
+import { imageType } from "../types/imageTypes";
 
 export type ContextShape = {
   fetchUnsplashImages: (arg?: boolean) => void;
@@ -26,9 +11,9 @@ export type ContextShape = {
   setHasError: (arg: boolean) => void;
   hasApiError: boolean;
   setHasApiError: (arg: boolean) => void;
-  randomImage: Image;
-  getRandomImage: () => void;
-  displayRandomImages: (arg?: boolean) => void;
+  randomImage: imageType;
+  getSplashImage: () => void;
+  getRandomImages: (arg?: boolean) => void;
 };
 
 export type ContextProps = {
@@ -40,7 +25,7 @@ const REACT_APP_KEY = process.env.REACT_APP_KEY;
 
 export const MyContextProvider = ({ children }: ContextProps) => {
   const [images, setImages] = useState<Array<string>>([]);
-  const [randomImage, setRandomImage] = useState<Image>({} as Image);
+  const [randomImage, setRandomImage] = useState<imageType>({} as imageType);
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [hasInputValue, setHasInputValue] = useState(false);
@@ -49,8 +34,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [theCount, setTheCount] = useState(10);
   const dataFetchedRef = useRef(false);
 
-  const fetchUnsplashImages = async (newPage: boolean = false) => {
-    const apiPage = newPage ? 1 : page;
+  const fetchUnsplashImages = async (clearSearch: boolean = false) => {
+    const apiPage = clearSearch ? 1 : page;
 
     fetch(
       `https://api.unsplash.com/search/photos?page=${apiPage}&per_page=10&query=${inputValue}&client_id=${REACT_APP_KEY}`
@@ -64,7 +49,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         const result = await jsonData.results;
         if (result.length > 1) {
           setHasInputValue(true);
-          setImages(newPage ? [...result] : [...images, ...result]);
+
+          setImages(clearSearch ? [...result] : [...images, ...result]);
           setPage(page + 1);
         } else {
           setHasError(true);
@@ -75,10 +61,10 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       });
   };
 
-  const getRandomImage = () => {
-    const randomImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_KEY}`;
+  const getSplashImage = () => {
+    const splashImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_KEY}`;
 
-    fetch(randomImageUrl)
+    fetch(splashImageUrl)
       .then(async (res) => {
         if (!res.ok) {
           setHasApiError(true);
@@ -100,16 +86,16 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   useEffect(() => {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
-    getRandomImage();
-    displayRandomImages(true);
+    getSplashImage();
+    getRandomImages(true);
   }, []);
 
-  const displayRandomImages = (newImages: boolean = false) => {
+  const getRandomImages = (newImages: boolean = false) => {
     const REACT_APP_RANDOM_IMAGE_KEY = process.env.REACT_APP_RANDOM_IMAGE_KEY;
     const nextImages = newImages ? 10 : theCount;
-    const displayRandomImagesUrl = `https://api.unsplash.com/photos/random?count=${nextImages}&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`;
+    const getRandomImagesUrl = `https://api.unsplash.com/photos/random?count=${nextImages}&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`;
 
-    fetch(displayRandomImagesUrl)
+    fetch(getRandomImagesUrl)
       .then(async (res) => {
         if (!res.ok) {
           setHasApiError(true);
@@ -141,8 +127,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         hasApiError,
         setHasApiError,
         randomImage,
-        getRandomImage,
-        displayRandomImages,
+        getSplashImage,
+        getRandomImages,
         hasInputValue,
       }}
     >

@@ -1,9 +1,9 @@
 import React from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { BsFillArrowDownSquareFill } from "react-icons/bs";
-
+import { imageType } from "../types/imageTypes";
 interface ImageProps {
-  image: any;
+  image: imageType;
 }
 
 const Image = ({ image }: ImageProps) => {
