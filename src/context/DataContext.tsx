@@ -31,27 +31,20 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [hasInputValue, setHasInputValue] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [hasApiError, setHasApiError] = useState(false);
-  const [theCount, setTheCount] = useState(10);
   const dataFetchedRef = useRef(false);
 
-  const fetchUnsplashImages = async (clearSearch: boolean = false) => {
-    const apiPage = clearSearch ? 1 : page;
-
-    fetch(
-      `https://api.unsplash.com/search/photos?page=${apiPage}&per_page=10&query=${inputValue}&client_id=${REACT_APP_KEY}`
-    )
+  const apiFetch = (url: string, onSuccess: (result: any) => void) => {
+    fetch(url)
       .then(async (response) => {
         if (!response.ok) {
           setHasApiError(true);
           return;
         }
         const jsonData = await response.json();
-        const result = await jsonData.results;
-        if (result.length > 1) {
-          setHasInputValue(true);
+        const result = jsonData.results ? jsonData.results : jsonData;
 
-          setImages(clearSearch ? [...result] : [...images, ...result]);
-          setPage(page + 1);
+        if (result.length > 1) {
+          onSuccess(result);
         } else {
           setHasError(true);
         }
@@ -59,6 +52,27 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       .catch((error) => {
         setHasApiError(true);
       });
+  };
+
+  const fetchUnsplashImages = async (clearSearch: boolean = false) => {
+    const apiPage = clearSearch ? 1 : page;
+    apiFetch(
+      `https://api.unsplash.com/search/photos?page=${apiPage}&per_page=10&query=${inputValue}&client_id=${REACT_APP_KEY}`,
+      (result: any) => {
+        setHasInputValue(true);
+        setImages(clearSearch ? [...result] : [...images, ...result]);
+        setPage(page + 1);
+      }
+    );
+  };
+
+  const getRandomImages = () => {
+    apiFetch(
+      `https://api.unsplash.com/photos/random?count=10&client_id=${REACT_APP_KEY}`,
+      (result: any) => {
+        setImages([...images, ...result]);
+      }
+    );
   };
 
   const getSplashImage = () => {
@@ -87,33 +101,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
     getSplashImage();
-    getRandomImages(true);
+    getRandomImages();
   }, []);
-
-  const getRandomImages = (newImages: boolean = false) => {
-    const REACT_APP_RANDOM_IMAGE_KEY = process.env.REACT_APP_RANDOM_IMAGE_KEY;
-    const nextImages = newImages ? 10 : theCount;
-    const getRandomImagesUrl = `https://api.unsplash.com/photos/random?count=${nextImages}&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`;
-
-    fetch(getRandomImagesUrl)
-      .then(async (res) => {
-        if (!res.ok) {
-          setHasApiError(true);
-          return;
-        }
-        const data = await res.json();
-        const result = await data;
-        if (result.length && inputValue === "") {
-          setImages(newImages ? [...result] : [...images, ...result]);
-          setTheCount(theCount + 10);
-        } else {
-          setHasError(true);
-        }
-      })
-      .catch((error) => {
-        setHasApiError(true);
-      });
-  };
 
   return (
     <MyContext.Provider
