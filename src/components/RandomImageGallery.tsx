@@ -5,7 +5,7 @@ import Image from "../subComponents/Image";
 import MyContext from '../context/DataContext';
 
 const RandomImageGallery = () => {
-    const {images, displayRandomImages, hasInputValue} = useContext(MyContext);
+    const {images, getRandomImages, hasInputValue} = useContext(MyContext);
  
   return (
     <>
@@ -14,7 +14,7 @@ const RandomImageGallery = () => {
     <section className="flex items-center justify-center p-5  w-[100vw] ">
     <InfiniteScroll
       dataLength={images.length}
-      next={() => displayRandomImages()}
+      next={() => getRandomImages()}
       hasMore={true}
       loader={<Loader />}
       hasChildren={true}
