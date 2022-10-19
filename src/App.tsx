@@ -4,7 +4,6 @@ import Images from "./components/Images";
 import Error from "./subComponents/Error";
 import ApiError from "./subComponents/ApiError";
 import Hero from "./components/Hero";
-import RandomImageGallery from "./components/RandomImageGallery";
 
 function App() {
   return (
@@ -13,9 +12,8 @@ function App() {
         <Error />
         <ApiError />
         <Header />
-        <Hero/>
+        <Hero />
         <Images />
-        <RandomImageGallery />
       </div>
     </MyContextProvider>
   );
