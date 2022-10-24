@@ -1,5 +1,5 @@
 import { createContext, useState, ReactNode, useEffect, useRef } from "react";
-import { imageType } from "../types/imageTypes";
+import { ImageType } from "../types/imageTypes";
 
 export type ContextShape = {
   fetchUnsplashImages: (arg?: boolean) => void;
@@ -11,9 +11,11 @@ export type ContextShape = {
   setHasError: (arg: boolean) => void;
   hasApiError: boolean;
   setHasApiError: (arg: boolean) => void;
-  randomImage: imageType;
+  randomImage: ImageType;
   getSplashImage: () => void;
-  getRandomImages: (arg?: boolean) => void;
+  getRandomImages: () => void;
+  modalOpen: boolean;
+  setModalOpen: (arg: boolean) => void;
 };
 
 export type ContextProps = {
@@ -25,12 +27,13 @@ const REACT_APP_KEY = process.env.REACT_APP_KEY;
 
 export const MyContextProvider = ({ children }: ContextProps) => {
   const [images, setImages] = useState<Array<string>>([]);
-  const [randomImage, setRandomImage] = useState<imageType>({} as imageType);
+  const [randomImage, setRandomImage] = useState<ImageType>({} as ImageType);
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [hasInputValue, setHasInputValue] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [hasApiError, setHasApiError] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const dataFetchedRef = useRef(false);
 
   const apiFetch = (
@@ -122,6 +125,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         getSplashImage,
         getRandomImages,
         hasInputValue,
+        modalOpen,
+        setModalOpen
       }}
     >
       {children}
