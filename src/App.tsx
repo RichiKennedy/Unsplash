@@ -9,9 +9,10 @@ import { ImageType } from "./types/imageTypes";
 import { useState } from "react";
 
 function App() {
-  const [modalImage, setModalImage] = useState<ImageType>({} as ImageType)
+  const [modalImage, setModalImage] = useState<ImageType | undefined>(undefined)
   const onImageClick = (clickedImage: ImageType) => {
     setModalImage(clickedImage)
+    console.log(clickedImage)
   }
 
   return (
@@ -21,7 +22,7 @@ function App() {
         <ApiError />
         <Header />
         <Hero />
-        <Modal modalImage={modalImage}/>
+        {modalImage && <Modal modalImage={modalImage} /> }
         <Images onImageClick={onImageClick} />
       </div>
     </MyContextProvider>
