@@ -14,13 +14,13 @@ export type ContextShape = {
   randomImage: ImageType;
   getSplashImage: () => void;
   getRandomImages: () => void;
-  modalOpen: boolean;
-  setModalOpen: (arg: boolean) => void;
 };
 
 export type ContextProps = {
   children: ReactNode;
 };
+
+// Look into typescript enums and switch cases
 
 const MyContext = createContext<ContextShape>({} as ContextShape);
 const REACT_APP_KEY = process.env.REACT_APP_KEY;
@@ -33,7 +33,6 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [hasInputValue, setHasInputValue] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [hasApiError, setHasApiError] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const dataFetchedRef = useRef(false);
 
   const apiFetch = (
@@ -125,8 +124,6 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         getSplashImage,
         getRandomImages,
         hasInputValue,
-        modalOpen,
-        setModalOpen
       }}
     >
       {children}
