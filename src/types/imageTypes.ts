@@ -17,6 +17,12 @@ interface User {
 }
 interface Links {
   html: string;
+  download_location: string;
+}
+
+interface Location {
+  city: string;
+  country: string;
 }
 
 export interface ImageType {
@@ -27,4 +33,6 @@ export interface ImageType {
   views: number;
   downloads: number;
   likes: number;
+  location: Location;
+  links: Links;
 }
