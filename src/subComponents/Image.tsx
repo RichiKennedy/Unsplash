@@ -1,3 +1,4 @@
+import React from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { BsFillArrowDownSquareFill } from "react-icons/bs";
 import { ImageType } from "../types/imageTypes";
@@ -7,14 +8,15 @@ interface ImageProps {
 }
 
 const Image = ({ image, onImageClick }: ImageProps) => {
+
   const handleClick = (clickedImage: ImageType) => {
     onImageClick(clickedImage);
   };
 
   return (
-    <div className="elative w-[100%]">
+    <div className="  relative w-[100%]">
       <img
-        className="w-full object-cover h-full"
+        className="   w-full object-cover h-full   "
         key={image.id}
         src={image.urls.small}
         alt={image.alt_description}
@@ -25,7 +27,7 @@ const Image = ({ image, onImageClick }: ImageProps) => {
       >
         <div className="flex items-center p-5 gap-2 h-[80px]">
           <img
-            className="rounded-full h-10 w-10 "
+            className=" rounded-full h-10 w-10"
             src={image.user.profile_image.large}
             alt={image.alt_description}
           />
