@@ -26,7 +26,7 @@ const Modal = ({ modalImage }: ModalProps) => {
     setZoomedIn(false);
   };
 
-  const renderContent = () => {
+  const renderZoomContent = () => {
     const classes = zoomedIn ? 'flex items-center justify-center max-h-[90%] min-w-[100%]' : 'w-[100%] h-[65%] sm:h-[80%] md:w-[90%] md:h-[80%] lg:w-[900px] lg:h-[900px] flex items-center justify-center'
     const src = zoomedIn ? modalImage.urls.raw : modalImage.urls.small
     const zoomCursor = zoomedIn ? 'hover: cursor-zoom-out opacity-0 hover:opacity-100 absolute top-0 right-0 bottom-0 left-0 flex justify-end' : 'hover: cursor-zoom-in opacity-0 hover:opacity-100 absolute top-0 right-0 bottom-0 left-0 flex justify-end'
@@ -84,7 +84,7 @@ const Modal = ({ modalImage }: ModalProps) => {
               </button>
               </a>
             </nav>
-            {renderContent()}
+            {renderZoomContent()}
             <footer className="w-full flex items-center justify-between">
               <ul className="flex items-center justify-between w-[70%] sm:w-[60%] md:w-[50%] lg:w-[35%] p-5">
                 <li>
