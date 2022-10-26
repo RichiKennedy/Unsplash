@@ -12,7 +12,6 @@ function App() {
   const [modalImage, setModalImage] = useState<ImageType | undefined>(undefined)
   const onImageClick = (clickedImage: ImageType) => {
     setModalImage(clickedImage)
-    console.log(clickedImage)
   }
 
   return (
