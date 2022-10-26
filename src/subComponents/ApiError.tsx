@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import MyContext from "../context/DataContext";
 import { GrClose } from "react-icons/gr";
+import "../styles/animations.css"
 
 const ApiError = () => {
   const { hasApiError, setHasApiError } = useContext(MyContext);

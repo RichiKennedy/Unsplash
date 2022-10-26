@@ -1,5 +1,5 @@
 import { createContext, useState, ReactNode, useEffect, useRef } from "react";
-import { imageType } from "../types/imageTypes";
+import { ImageType } from "../types/imageTypes";
 
 export type ContextShape = {
   fetchUnsplashImages: (arg?: boolean) => void;
@@ -11,21 +11,23 @@ export type ContextShape = {
   setHasError: (arg: boolean) => void;
   hasApiError: boolean;
   setHasApiError: (arg: boolean) => void;
-  randomImage: imageType;
+  randomImage: ImageType;
   getSplashImage: () => void;
-  getRandomImages: (arg?: boolean) => void;
+  getRandomImages: () => void;
 };
 
 export type ContextProps = {
   children: ReactNode;
 };
 
+// Look into typescript enums and switch cases
+
 const MyContext = createContext<ContextShape>({} as ContextShape);
 const REACT_APP_KEY = process.env.REACT_APP_KEY;
 
 export const MyContextProvider = ({ children }: ContextProps) => {
   const [images, setImages] = useState<Array<string>>([]);
-  const [randomImage, setRandomImage] = useState<imageType>({} as imageType);
+  const [randomImage, setRandomImage] = useState<ImageType>({} as ImageType);
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [hasInputValue, setHasInputValue] = useState(false);
