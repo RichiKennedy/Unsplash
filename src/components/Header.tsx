@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaUnsplash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import SearchBar from "../subComponents/SearchBar";
 
 const Header = () => {
@@ -25,13 +26,12 @@ const Header = () => {
       style={{ backgroundColor: `${color}` }}
     >
       <div className="gap-5 pl-5 flex items-center justify-center">
-        <h1
-          style={{ color: `${textColor}` }}
-          className="text-white font-bold"
-        >
-          <FaUnsplash className="h-11 w-11 sm:h-14 sm:w-14"/>
-        </h1>
-
+        <Link to="/">
+          <FaUnsplash
+            style={{ color: `${textColor}` }}
+            className="h-11 w-11 sm:h-14 sm:w-14 cursor-pointer"
+          />
+        </Link>
         <SearchBar />
       </div>
     </div>
