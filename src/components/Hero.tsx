@@ -13,7 +13,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative h-[600px] md:h-[650px] lg:h-[700px] xl:h-[800px] bg-fixed z-10">
+    <div className="relative h-[550px] md:h-[600px] lg:h-[650px] xl:h-[750px] bg-fixed z-10">
       <img
         height={600}
         width={1000}
