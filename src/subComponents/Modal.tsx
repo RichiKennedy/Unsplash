@@ -5,8 +5,9 @@ import { MdOutlineClose } from "react-icons/md";
 const REACT_APP_KEY = process.env.REACT_APP_KEY;
 interface ModalProps {
   modalImage: ImageType;
+  setModalImage: (arg: ImageType | undefined) => void
 }
-const Modal = ({ modalImage }: ModalProps) => {
+const Modal = ({ modalImage, setModalImage }: ModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [zoomedIn, setZoomedIn] = useState(false)
 
@@ -24,6 +25,7 @@ const Modal = ({ modalImage }: ModalProps) => {
   const closeModal = () => {
     setIsOpen(false);
     setZoomedIn(false);
+    setModalImage(undefined);
   };
 
   const renderZoomContent = () => {
@@ -33,7 +35,7 @@ const Modal = ({ modalImage }: ModalProps) => {
     const zoomIcon = zoomedIn ? <BsArrowsAngleContract className="h-7 w-7 m-3 text-white" /> : <BsArrowsAngleExpand className="h-7 w-7 m-3 text-white" />
     return (
       <section className={classes}>
-      <div className="relative w-full h-full flex items-center justify-center ">
+      <div className="relative w-full h-full flex items-center justify-center">
         <img
           className=" object-cover w-full h-full"
           src={src}
