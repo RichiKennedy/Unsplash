@@ -11,8 +11,7 @@ const Image = ({ image, onImageClick }: ImageProps) => {
   const handleClick = (clickedImage: ImageType) => {
     onImageClick(clickedImage);
   };
-
-  console.log(image);
+  
   return (
     <div className="relative w-[100%]">
       <img
