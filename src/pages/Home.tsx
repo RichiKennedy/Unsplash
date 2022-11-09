@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { MyContextProvider } from "../context/DataContext";
 import Header from "../components/Header";
 import Images from "../components/Images";
 import Error from "../subComponents/Error";
@@ -14,16 +13,14 @@ const Home = () => {
     setModalImage(clickedImage);
   };
   return (
-    <MyContextProvider>
     <div className=" w-[100vw]">
       <Error />
       <ApiError />
-      <Header />
+      <Header isStatic = {true}/>
       <Hero />
-      {modalImage && <Modal modalImage={modalImage} />}
-      <Images onImageClick={onImageClick} />
+      {modalImage && <Modal modalImage={modalImage} setModalImage={setModalImage} />}
+      <Images onImageClick={onImageClick} isStatic={true} />
     </div>
-    </MyContextProvider>
   );
 };
 
