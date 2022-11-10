@@ -4,7 +4,7 @@ import Header from "../components/Header";
 const About = () => {
   return (
     <div className="flex items-center justify-center flex-col bg-gray-800 w-[100vw] h-[100vh] ">
-      <Header isStatic={false}/>
+      <Header homePage={false}/>
 
       <div className=" flex items-center justify-center p-10 w-[50%] flex-col text-white">
         <h1 className=" text-4xl"> About Page</h1>
