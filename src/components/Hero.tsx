@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import MyContext from "../context/DataContext";
 import HeroSearchBar from "../subComponents/HeroSearchBar";
 
-const Hero = () => {
+interface HeroType {
+  categoryID: string | undefined;
+}
+
+const Hero = ({categoryID}: HeroType) => {
   const { randomImage } = useContext(MyContext);
   const [offSetY, setOffSetY] = useState(0);
   const handleScroll = () => setOffSetY(window.pageYOffset);
@@ -11,12 +15,9 @@ const Hero = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   return (
     <div className="relative h-[550px] md:h-[600px] lg:h-[650px] xl:h-[750px] bg-fixed z-10">
       <img
-        height={600}
-        width={1000}
         className="object-cover w-full h-full"
         src={randomImage?.urls?.full}
         alt={randomImage?.alt_description ? randomImage.alt_description : ""}
@@ -27,12 +28,13 @@ const Hero = () => {
           style={{ transform: `translateY(${offSetY * 0.35}px)` }}
           className="h-full w-full p-10 md:max-w-2xl md:p-0 flex items-center justify-center flex-col text-left"
         >
-          <h1 className="w-full text-5xl mb-5 font-bold"> Unsplash </h1>
+          <h1 className="w-full text-5xl mb-5 font-bold"> {categoryID ? categoryID : "Unsplash"} </h1>
           <p className="w-full">
             The internet’s source for visuals. <br />
-            Powered by creators everywhere.
+            Powered by creators everywhere. <br />
+            {categoryID ? `Bringing you stunning photography highlighting ${categoryID}` : null}
           </p>
-          <HeroSearchBar />
+         { !categoryID ? <HeroSearchBar /> : null}
         </div>
         <div className="flex items-center p-5 gap-2 h-[80px] w-full">
           <h1 className="text-gray-200">
