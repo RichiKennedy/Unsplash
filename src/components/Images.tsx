@@ -7,10 +7,9 @@ import { ImageType } from "../types/imageTypes";
 import Masonry from "react-smart-masonry";
 export interface ImagesProps {
   onImageClick: (clickedImage: ImageType) => void;
-  isStatic?: boolean;
 }
 
-const Images = ({ onImageClick, isStatic }: ImagesProps) => {
+const Images = ({ onImageClick}: ImagesProps) => {
   const { images, hasInputValue, getRandomImages, fetchUnsplashImages } = useContext(MyContext);
   const breakpoints = { mobile: 0, tablet: 600, laptop: 1000, desktop: 1600 };
  
