@@ -17,8 +17,16 @@ const navigate = useNavigate()
  }
 
   return (
-    <div className=" flex items-center border-2 rounded-full py-2 shadow-sm w-[70vw] sm:w-[50vw] bg-white   ">
+    <div >
+      <form 
+      className="flex items-center border-2 rounded-full py-2 shadow-sm w-[70vw] sm:w-[50vw] bg-white"
+       onSubmit={(e) => { 
+        e.preventDefault()
+        handleSearch()
+      }}
+      >       
       <input
+     
         className=" pl-5 bg-transparent outline-none flex-grow text-sm text-black placeholder-gray-400  "
         type="text"
         placeholder="Search high-resolution photos"
@@ -30,6 +38,7 @@ const navigate = useNavigate()
         type="submit"
         onClick={() => handleSearch()}
       />
+      </form>
       
     </div>
   );
