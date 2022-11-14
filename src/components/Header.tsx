@@ -1,9 +1,10 @@
 import { useEffect, useState, CSSProperties } from "react";
-import { FaUnsplash } from "react-icons/fa";
+import { FaUnsplash,FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CategoryItem from "../subComponents/CategoryItem";
 import SearchBar from "../subComponents/SearchBar";
 import { CategoryType } from "../types/categoryTypes";
+
 
 interface HeaderProps {
   homePage: boolean;
@@ -25,7 +26,7 @@ const Header = ({ homePage}: HeaderProps) => {
   ];
   useEffect(() => {
     const changeColor = () => {
-      if (window.scrollY >= 145) {
+      if (window.scrollY >= 100) {
         setCSSStyles({
           backgroundColor: 'white',
           color: 'black'
@@ -51,9 +52,8 @@ const Header = ({ homePage}: HeaderProps) => {
 
     return (
       <main
-        className="fixed flex justify-start w-[100vw] h-[12vh] lg:h-[18vh] duration-150 ease-in-out top-0 z-20 shadow-md"
+        className="fixed flex justify-start w-[100vw] h-[12vh] lg:h-[18vh] duration-150 ease-in top-0 z-20 shadow-md"
         style={{ backgroundColor: cssStyles.backgroundColor, color: cssStyles.color  }}
-       
       >
         <section className="flex items-center justify-between h-full w-full">
           <div className="h-[100%] w-[100%] flex flex-col items-start justify-evenly px-5">
@@ -64,24 +64,25 @@ const Header = ({ homePage}: HeaderProps) => {
                 />
               </Link>
               <SearchBar />
+              
             </div>
             <div className="flex  w-full">
             <ul
-              className="w-[1600px] flex items-center justify-between overflow-auto whitespace-nowrap gap-5"
+              className="w-[1200px] flex items-center justify-between overflow-auto whitespace-nowrap gap-5"
             >
               {categories.map((category: CategoryType) => (
                 <CategoryItem category={category} />
               ))}
             </ul>
-            
             <ul 
-             className="flex items-center justify-end gap-5 w-[20%]">
+             className="flex items-center justify-between xl:justify-end px-5 gap-5 w-[400px]  ">
+               <FaAngleRight className="text-lg xl:hidden block"
+               />
               <CategoryItem category={{
                 id:'about',
                 name: 'About'
               }} />
             </ul>
-            
             </div>
           </div>
         </section>

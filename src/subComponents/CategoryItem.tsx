@@ -11,9 +11,7 @@ const CategoryItem = ({category}: CategoryProps) => {
     <Link 
     className='cursor-pointer hover:underline underline-offset-4'
     to={`/${category.id}`}>
-      
         {category.name}
-      
     </Link>
   )
 }
