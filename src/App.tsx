@@ -1,31 +1,27 @@
+import { Routes, Route } from "react-router-dom";
 import { MyContextProvider } from "./context/DataContext";
-import Header from "./components/Header";
-import Images from "./components/Images";
-import Error from "./subComponents/Error";
-import ApiError from "./subComponents/ApiError";
-import Hero from "./components/Hero";
-import Modal from "./subComponents/Modal";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import NoPage from "./pages/NoPage";
+import CategoryPage from "./pages/CategoryPage";
 import { ImageType } from "./types/imageTypes";
 import { useState } from "react";
 
 function App() {
-  const [modalImage, setModalImage] = useState<ImageType | undefined>(undefined)
+  const [modalImage, setModalImage] = useState<ImageType | undefined> (undefined);
   const onImageClick = (clickedImage: ImageType) => {
-    setModalImage(clickedImage)
-  }
-
+    setModalImage(clickedImage);
+  };
   return (
     <MyContextProvider>
-      <div className=" w-[100vw]">
-        <Error />
-        <ApiError />
-        <Header />
-        <Hero />
-        {modalImage && <Modal modalImage={modalImage} /> }
-        <Images onImageClick={onImageClick} />
-      </div>
+    <Routes>
+      <Route path="/" element={<Home modalImage={modalImage} setModalImage={setModalImage} onImageClick={onImageClick}/>} />
+      <Route path="/about" element={<About/>} />
+      <Route path="*" element={<NoPage />} />
+      <Route path="/:categoryID" element={<CategoryPage onImageClick={onImageClick} modalImage={modalImage} setModalImage={setModalImage} />} />
+    </Routes>
     </MyContextProvider>
   );
-}
+};
 
 export default App;

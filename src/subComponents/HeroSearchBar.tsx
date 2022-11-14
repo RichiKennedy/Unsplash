@@ -7,6 +7,12 @@ const HeroSearchBar = () => {
 
   return (
     <div className=" flex items-center  rounded-sm py-2 shadow-sm w-full mt-5 bg-white   ">
+      <form 
+      className="flex w-[100%]"
+      onSubmit={(e) => { 
+        e.preventDefault()
+        fetchUnsplashImages(true)
+      }}>
       <input
         className=" pl-5 bg-transparent outline-none flex-grow text-sm text-black placeholder-gray-400  "
         type="text"
@@ -19,6 +25,7 @@ const HeroSearchBar = () => {
         type="submit"
         onClick={() => fetchUnsplashImages(true)}
       />
+      </form>
     </div>
   );
 };
