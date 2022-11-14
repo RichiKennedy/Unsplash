@@ -19,7 +19,7 @@ const Hero = ({categoryID}: HeroType) => {
     <div className="relative h-[550px] md:h-[600px] lg:h-[650px] xl:h-[750px] bg-fixed z-10">
       <img
         className="object-cover w-full h-full"
-        src={randomImage?.urls?.full}
+        src={randomImage?.urls?.regular}
         alt={randomImage?.alt_description ? randomImage.alt_description : ""}
         key={randomImage?.id}
       />

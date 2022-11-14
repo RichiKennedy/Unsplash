@@ -134,7 +134,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         hasInputValue,
         setHasInputValue,
         topic,
-        setTopic
+        setTopic,
       }}
     >
       {children}
