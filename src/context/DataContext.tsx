@@ -17,6 +17,8 @@ export type ContextShape = {
   getRandomImages: (topic?: string | null) => void;
   topic: string | undefined;
   setTopic: (arg: string) => void;
+  heroLoaded: boolean;
+  setHeroLoaded: (arg: boolean) => void;
 };
 
 export type ContextProps = {
@@ -31,11 +33,12 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [images, setImages] = useState<Array<string>>([]);
   const [randomImage, setRandomImage] = useState<ImageType>({} as ImageType);
   const [page, setPage] = useState(1);
-  const [inputValue, setInputValue] = useState<string | undefined> (undefined)
+  const [inputValue, setInputValue] = useState<string | undefined> (undefined);
   const [hasInputValue, setHasInputValue] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [hasApiError, setHasApiError] = useState(false);
-  const [topic, setTopic] = useState("")
+  const [topic, setTopic] = useState("");
+  const [heroLoaded, setHeroLoaded] = useState(false);
   const dataFetchedRef = useRef(false);
 
   const apiFetch = (
@@ -90,23 +93,27 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const getSplashImage = (topic?: string) => {
     const splashImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`
     const dynamicHero = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&query=${topic}&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`
-   
+    setHeroLoaded(false)
     fetch(!topic ? splashImageUrl : dynamicHero)
       .then(async (res) => {
         if (!res.ok) {
           setHasApiError(true);
+          setHeroLoaded(false)
           return;
         }
         const data = await res.json();
         const result = await data;
         if (result.length) {
           setRandomImage(result[0]);
+          setHeroLoaded(false)
         } else {
           setHasError(true);
+          setHeroLoaded(false)
         }
       })
       .catch((error) => {
         setHasApiError(true);
+        setHeroLoaded(false)
       });
   };
 
@@ -135,6 +142,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setHasInputValue,
         topic,
         setTopic,
+        heroLoaded,
+        setHeroLoaded,
       }}
     >
       {children}

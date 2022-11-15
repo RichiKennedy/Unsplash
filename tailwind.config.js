@@ -9,6 +9,9 @@ module.exports = {
 
           to: { transform: "translateY(0%)" },
         },
+        shimmer: {
+          '100%' : {transform: 'translateX(100%)'}
+        }
       },
 
       animation: {

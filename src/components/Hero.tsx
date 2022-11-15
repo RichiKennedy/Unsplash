@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import MyContext from "../context/DataContext";
 import HeroSearchBar from "../subComponents/HeroSearchBar";
-
+import Skeleton from "../subComponents/Skeleton";
 interface HeroType {
   categoryID: string | undefined;
 }
 
 const Hero = ({categoryID}: HeroType) => {
+  const {heroLoaded, setHeroLoaded} = useContext(MyContext)
+  
   const { randomImage } = useContext(MyContext);
   const [offSetY, setOffSetY] = useState(0);
   const handleScroll = () => setOffSetY(window.pageYOffset);
@@ -15,20 +17,25 @@ const Hero = ({categoryID}: HeroType) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <div className="relative h-[550px] md:h-[600px] lg:h-[650px] xl:h-[750px] bg-fixed z-10">
-      <img
-        className="object-cover w-full h-full"
-        src={randomImage?.urls?.regular}
-        alt={randomImage?.alt_description ? randomImage.alt_description : ""}
-        key={randomImage?.id}
-      />
+      {!heroLoaded ? (
+        <Skeleton /> 
+      ): null}
+       <img
+          className={!heroLoaded ? "hidden" : "object-cover w-full h-full"}
+          src={randomImage?.urls?.regular}
+          onLoad={() => setHeroLoaded(true)}
+          alt={randomImage?.alt_description ? randomImage.alt_description : ""}
+          key={randomImage?.id}
+        />
       <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/40 text-white flex items-center justify-between flex-col">
         <div
           style={{ transform: `translateY(${offSetY * 0.35}px)` }}
-          className="h-full w-full p-10 md:max-w-2xl md:p-0 flex items-center justify-center flex-col text-left"
+          className={!categoryID ? "h-[76%] sm:h-[70%] w-full p-10 md:max-w-2xl md:p-0 flex items-center justify-end flex-col text-left " :  "h-[80%] sm:h-[70%] p-10 md:p-0 flex items-center justify-end flex-col text-left"}
         >
-          <h1 className="w-full text-5xl mb-5 font-bold"> {categoryID ? categoryID : "Unsplash"} </h1>
+          <h1 className="w-full text-3xl lg:text-5xl xl:text-7xl mb-5 font-bold"> {categoryID ? categoryID : "Unsplash"} </h1>
           <p className="w-full">
             The internet’s source for visuals. <br />
             Powered by creators everywhere. <br />
