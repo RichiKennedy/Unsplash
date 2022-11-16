@@ -35,6 +35,4 @@ export interface ImageType {
   likes: number;
   location: Location;
   links: Links;
-  blur_hash: string;
-  height: number;
 }
