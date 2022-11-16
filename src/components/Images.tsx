@@ -9,16 +9,18 @@ export interface ImagesProps {
   onImageClick: (clickedImage: ImageType) => void;
 }
 
-const Images = ({ onImageClick}: ImagesProps) => {
+const Images = ({ onImageClick }: ImagesProps) => {
   const { images, hasInputValue, getRandomImages, fetchUnsplashImages } = useContext(MyContext);
   const breakpoints = { mobile: 0, tablet: 600, laptop: 1000, desktop: 1600 };
- 
+
   return (
     <>
       <section className="flex items-center justify-center pt-10 w-[100vw]">
         <InfiniteScroll
           dataLength={images.length}
-          next={ () => !hasInputValue ? getRandomImages() : fetchUnsplashImages() }
+          next={() =>
+            !hasInputValue ? getRandomImages() : fetchUnsplashImages()
+          }
           hasMore={true}
           loader={<Loader />}
           hasChildren={true}
