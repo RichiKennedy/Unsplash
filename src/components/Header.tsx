@@ -1,7 +1,9 @@
 import { useEffect, useState, CSSProperties } from "react";
 import { FaUnsplash, FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ApiError from "../subComponents/ApiError";
 import CategoryItem from "../subComponents/CategoryItem";
+import Error from "../subComponents/Error";
 import SearchBar from "../subComponents/SearchBar";
 import { CategoryType } from "../types/categoryTypes";
 
@@ -58,6 +60,8 @@ const Header = ({ homePage }: HeaderProps) => {
         color: cssStyles.color,
       }}
     >
+         <Error />
+      <ApiError />
       <section className="flex items-center justify-between h-full w-full">
         <div className="h-[100%] w-[100%] flex flex-col items-start justify-evenly px-5">
           <div className="gap-5 flex w-full ">
