@@ -19,6 +19,8 @@ export type ContextShape = {
   setTopic: (arg: string) => void;
   heroLoaded: boolean;
   setHeroLoaded: (arg: boolean) => void;
+  imageLoaded: boolean;
+  setImageLoaded: (arg: boolean) => void;
 };
 
 export type ContextProps = {
@@ -39,26 +41,32 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [hasApiError, setHasApiError] = useState(false);
   const [topic, setTopic] = useState("");
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const dataFetchedRef = useRef(false);
 
   const apiFetch = (
     url: string,
     onSuccess: (result: Array<string>) => void) => {
+      setImageLoaded(false);
     fetch(url)
       .then(async (response) => {
         if (!response.ok) {
+          setImageLoaded(false);
           setHasApiError(true);
           return;
         }
         const jsonData = await response.json();
         const result = jsonData.results ? jsonData.results : jsonData;
         if (result.length > 1) {
+          setImageLoaded(false);
           onSuccess(result);
         } else {
+          setImageLoaded(false);
           setHasError(true);
         }
       })
       .catch((error) => {
+        setImageLoaded(false);
         setHasApiError(true);
       });
   };
@@ -144,6 +152,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setTopic,
         heroLoaded,
         setHeroLoaded,
+        imageLoaded,
+        setImageLoaded,
       }}
     >
       {children}
