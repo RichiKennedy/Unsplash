@@ -1,38 +1,39 @@
-import React, { useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import Header from '../components/Header';
-import Hero from '../components/Hero';
-import Images from '../components/Images';
-import MyContext from '../context/DataContext';
-import Modal from '../subComponents/Modal';
-import { ImageType } from '../types/imageTypes';
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import Images from "../components/Images";
+import MyContext from "../context/DataContext";
+import Modal from "../subComponents/Modal";
+import { ImageType } from "../types/imageTypes";
 
 interface CategoryPageProps {
   onImageClick: (clickedImage: ImageType) => void;
   modalImage: ImageType | undefined;
-  setModalImage: (arg: ImageType | undefined) => void
+  setModalImage: (arg: ImageType | undefined) => void;
 }
 
-const CategoryPage = ({onImageClick, modalImage, setModalImage}: CategoryPageProps) => {
+const CategoryPage = ({ onImageClick, modalImage, setModalImage }: CategoryPageProps) => {
   const { setTopic, setInputValue, fetchUnsplashImages, getSplashImage } = useContext(MyContext);
-  const {categoryID} = useParams()
+  const { categoryID } = useParams();
 
-useEffect(() => {
-    setInputValue(categoryID || "")
-    setTopic(categoryID || "")
-
+  useEffect(() => {
+    setInputValue(categoryID || "");
+    setTopic(categoryID || "");
     fetchUnsplashImages(true, 1, categoryID);
-    getSplashImage(categoryID)
-},[categoryID])
+    getSplashImage(categoryID);
+  }, [categoryID]);
 
   return (
     <div>
-        <Header homePage={true} />
-        <Hero categoryID={categoryID}/>
-        {modalImage && <Modal modalImage={modalImage} setModalImage={setModalImage} />}
-        <Images onImageClick={onImageClick} />
-      </div>
-  )
-}
+      <Header homePage={true} />
+      <Hero categoryID={categoryID} />
+      {modalImage && (
+        <Modal modalImage={modalImage} setModalImage={setModalImage} />
+      )}
+      <Images onImageClick={onImageClick} />
+    </div>
+  );
+};
 
-export default CategoryPage
+export default CategoryPage;

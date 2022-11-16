@@ -1,6 +1,6 @@
 import React from "react";
-
 import { BsImage } from "react-icons/bs";
+
 const Skeleton = () => {
   return (
     <main className="flex items-center justify-center bg-neutral-900 w-full h-full absolute">
