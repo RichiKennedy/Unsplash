@@ -68,8 +68,8 @@ const Header = ({ homePage }: HeaderProps) => {
           </div>
           <div className="flex w-full">
             <ul className="w-[1200px] xl:w-[90%] flex items-center justify-between overflow-auto whitespace-nowrap gap-5">
-              {categories.map((category: CategoryType) => (
-                <CategoryItem category={category} />
+              {categories.map((category: CategoryType, key: number) => (
+                <CategoryItem category={category} key={key} />
               ))}
             </ul>
             <ul className="flex items-center justify-between xl:justify-end px-5 gap-5 w-[400px] ">
