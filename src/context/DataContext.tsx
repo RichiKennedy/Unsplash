@@ -7,7 +7,7 @@ export type ContextShape = {
     apiPage?: number,
     value?: string
   ) => void;
-  inputValue: string | undefined;
+  inputValue: string;
   setInputValue: (arg: string) => void;
   hasInputValue: boolean;
   setHasInputValue: (arg: boolean) => void;
@@ -19,7 +19,7 @@ export type ContextShape = {
   randomImage: ImageType;
   getSplashImage: (topic?: string) => void;
   getRandomImages: (topic?: string | null) => void;
-  topic: string | undefined;
+  topic: string;
   setTopic: (arg: string) => void;
   heroLoaded: boolean;
   setHeroLoaded: (arg: boolean) => void;
@@ -39,7 +39,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [images, setImages] = useState<Array<string>>([]);
   const [randomImage, setRandomImage] = useState<ImageType>({} as ImageType);
   const [page, setPage] = useState(1);
-  const [inputValue, setInputValue] = useState<string | undefined>(undefined);
+  const [inputValue, setInputValue] = useState("");
   const [hasInputValue, setHasInputValue] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [hasApiError, setHasApiError] = useState(false);

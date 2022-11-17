@@ -1,8 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
 import Images from "../components/Images";
-import Error from "../subComponents/Error";
-import ApiError from "../subComponents/ApiError";
 import Hero from "../components/Hero";
 import Modal from "../subComponents/Modal";
 import { ImageType } from "../types/imageTypes";
@@ -16,8 +14,6 @@ interface HomeProps {
 const Home = ({onImageClick, modalImage, setModalImage}: HomeProps) => {
   return (
     <div className=" w-[100vw]">
-      <Error />
-      <ApiError />
       <Header homePage={true}/>
       <Hero categoryID={undefined}  />
       {modalImage && <Modal modalImage={modalImage} setModalImage={setModalImage} />}
