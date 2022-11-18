@@ -5,7 +5,6 @@ import MyContext from "../context/DataContext";
 
 const SearchBar = () => {
   const { fetchUnsplashImages, inputValue, setInputValue } = useContext(MyContext);
-
   const navigate = useNavigate();
   const location = useLocation();
 
