@@ -20,6 +20,7 @@ const CategoryPage = ({ onImageClick, modalImage, setModalImage, isOpen, setIsOp
   const { categoryID } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     setInputValue(categoryID || "");
     setTopic(categoryID || "");
     fetchUnsplashImages(true, 1, categoryID);

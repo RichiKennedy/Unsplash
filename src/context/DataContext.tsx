@@ -89,7 +89,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
     }
 
     apiFetch(
-      `https://api.unsplash.com/search/photos?page=${pagToUse}&per_page=10&query=${valueToUse}&client_id=${REACT_APP_KEY}`,
+      `https://api.unsplash.com/search/photos?page=${pagToUse}&per_page=10&query=${valueToUse}&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`,
       (result: Array<string>) => {
         setHasInputValue(true);
         setImages(clearSearch ? [...result] : [...images, ...result]);
@@ -100,7 +100,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
 
   const getRandomImages = () => {
     apiFetch(
-      `https://api.unsplash.com/photos/random?count=10&client_id=${REACT_APP_KEY}`,
+      `https://api.unsplash.com/photos/random?count=10&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`,
       (result: Array<string>) => {
         setImages([...images, ...result]);
       }
@@ -108,8 +108,8 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   };
 
   const getSplashImage = (topic?: string) => {
-    const splashImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_KEY}`;
-    const dynamicHero = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&query=${topic}&client_id=${REACT_APP_KEY}`;
+    const splashImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`;
+    const dynamicHero = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&query=${topic}&client_id=${REACT_APP_RANDOM_IMAGE_KEY}`;
     setHeroLoaded(false);
     fetch(!topic ? splashImageUrl : dynamicHero)
       .then(async (res) => {
