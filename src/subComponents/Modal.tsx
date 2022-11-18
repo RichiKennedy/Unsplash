@@ -13,9 +13,10 @@ const REACT_APP_KEY = process.env.REACT_APP_KEY;
 interface ModalProps {
   modalImage: ImageType;
   setModalImage: (arg: ImageType | undefined) => void;
+  isOpen: boolean;
+  setIsOpen: (arg: boolean) => void;
 }
-const Modal = ({ modalImage, setModalImage }: ModalProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Modal = ({ modalImage, setModalImage, isOpen, setIsOpen }: ModalProps) => {
   const [zoomedIn, setZoomedIn] = useState(false);
   const [loaded, setLoaded] = useState(false)
 
@@ -34,12 +35,11 @@ const Modal = ({ modalImage, setModalImage }: ModalProps) => {
     setZoomedIn(false);
     setModalImage(undefined);
   };
-  console.log(modalImage)
 
   const renderZoomContent = () => {
     const classes = zoomedIn
       ? "flex items-center justify-center min-h-[80%] min-w-[100%]"
-      : "w-[100%] h-[65%] sm:h-[80%] md:w-[90%] md:h-[80%] lg:w-[900px] lg:h-[900px] flex items-center justify-center";
+      : "w-[100%] h-[65%] sm:h-[80%] md:w-[90%] md:h-[80%] lg:w-[900px] lg:h-[80%] flex items-center justify-center";
     const src = zoomedIn ? modalImage.urls.raw : modalImage.urls.regular;
     const zoomCursor = zoomedIn
       ? "hover: cursor-zoom-out opacity-0 hover:opacity-100 absolute top-0 right-0 bottom-0 left-0 flex justify-end"

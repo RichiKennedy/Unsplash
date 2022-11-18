@@ -11,9 +11,11 @@ interface CategoryPageProps {
   onImageClick: (clickedImage: ImageType) => void;
   modalImage: ImageType | undefined;
   setModalImage: (arg: ImageType | undefined) => void;
+  isOpen: boolean;
+  setIsOpen: (arg: boolean) => void;
 }
 
-const CategoryPage = ({ onImageClick, modalImage, setModalImage }: CategoryPageProps) => {
+const CategoryPage = ({ onImageClick, modalImage, setModalImage, isOpen, setIsOpen }: CategoryPageProps) => {
   const { setTopic, setInputValue, fetchUnsplashImages, getSplashImage } = useContext(MyContext);
   const { categoryID } = useParams();
 
@@ -29,7 +31,7 @@ const CategoryPage = ({ onImageClick, modalImage, setModalImage }: CategoryPageP
       <Header homePage={true} />
       <Hero categoryID={categoryID} />
       {modalImage && (
-        <Modal modalImage={modalImage} setModalImage={setModalImage} />
+        <Modal modalImage={modalImage} setModalImage={setModalImage} isOpen={isOpen} setIsOpen={setIsOpen} />
       )}
       <Images onImageClick={onImageClick} />
     </div>
