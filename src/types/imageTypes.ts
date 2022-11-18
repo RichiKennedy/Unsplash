@@ -13,7 +13,8 @@ interface ProfileImage {
 interface User {
   name: null | string;
   profile_image: ProfileImage;
-  links: Links
+  links: Links;
+  for_hire: boolean;
 }
 interface Links {
   html: string;
@@ -35,4 +36,5 @@ export interface ImageType {
   likes: number;
   location: Location;
   links: Links;
+  description: string;
 }
