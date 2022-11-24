@@ -29,7 +29,7 @@ interface Location {
 export interface ImageType {
   urls: Urls;
   alt_description: string;
-  id: number;
+  id: string;
   user: User;
   views: number;
   downloads: number;
