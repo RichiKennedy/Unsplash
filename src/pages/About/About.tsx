@@ -1,9 +1,11 @@
 import React from "react";
-import Header from "../components/Header";
+import Header from "../../components/Header/Header";
 
 const About = () => {
   return (
-    <section className="flex items-center justify-center flex-col bg-gray-800 w-[100vw] h-[100vh] ">
+    <section 
+    data-test="about-wrapper"
+    className="flex items-center justify-center flex-col bg-gray-800 w-[100vw] h-[100vh] ">
       <Header homePage={false}/>
       <div className=" flex items-center justify-center p-10 w-[50%] flex-col text-white">
         <h1 className=" text-4xl"> About Page</h1>

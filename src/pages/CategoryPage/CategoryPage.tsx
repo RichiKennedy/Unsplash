@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../components/Header";
-import Hero from "../components/Hero";
-import Images from "../components/Images";
-import MyContext from "../context/DataContext";
-import Modal from "../subComponents/Modal";
-import { ImageType } from "../types/imageTypes";
+import Header from "../../components/Header/Header";
+import Hero from "../../components/hero/Hero";
+import ImageGallery from "../../components/ImageGallery/ImageGallery";
+import MyContext from "../../context/DataContext";
+import Modal from "../../subComponents/Modal";
+import { ImageType } from "../../types/imageTypes";
 
-interface CategoryPageProps {
+export interface CategoryPageProps {
   onImageClick: (clickedImage: ImageType) => void;
   modalImage: ImageType | undefined;
   setModalImage: (arg: ImageType | undefined) => void;
@@ -15,12 +15,18 @@ interface CategoryPageProps {
   setIsOpen: (arg: boolean) => void;
 }
 
-const CategoryPage = ({ onImageClick, modalImage, setModalImage, isOpen, setIsOpen }: CategoryPageProps) => {
+const CategoryPage = ({
+  onImageClick,
+  modalImage,
+  setModalImage,
+  isOpen,
+  setIsOpen,
+}: CategoryPageProps) => {
   const { setTopic, setInputValue, fetchUnsplashImages, getSplashImage } = useContext(MyContext);
   const { categoryID } = useParams();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     setInputValue(categoryID || "");
     setTopic(categoryID || "");
     fetchUnsplashImages(true, 1, categoryID);
@@ -28,13 +34,18 @@ const CategoryPage = ({ onImageClick, modalImage, setModalImage, isOpen, setIsOp
   }, [categoryID]);
 
   return (
-    <div>
+    <div data-test="category-page-wrapper">
       <Header homePage={true} />
       <Hero categoryID={categoryID} />
       {modalImage && (
-        <Modal modalImage={modalImage} setModalImage={setModalImage} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Modal
+          modalImage={modalImage}
+          setModalImage={setModalImage}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
       )}
-      <Images onImageClick={onImageClick} />
+      <ImageGallery onImageClick={onImageClick} />
     </div>
   );
 };

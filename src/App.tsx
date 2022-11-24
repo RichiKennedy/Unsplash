@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { MyContextProvider } from "./context/DataContext";
-import About from "./pages/About";
+import About from "./pages/About/About";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
-import CategoryPage from "./pages/CategoryPage";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import { ImageType } from "./types/imageTypes";
 import { useEffect, useState } from "react";
 

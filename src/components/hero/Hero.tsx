@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import MyContext from "../context/DataContext";
-import HeroSearchBar from "../subComponents/HeroSearchBar";
-import Skeleton from "../subComponents/Skeleton";
+import MyContext from "../../context/DataContext";
+import HeroSearchBar from "../../subComponents/HeroSearchBar";
+import Skeleton from "../../subComponents/Skeleton";
 interface HeroType {
   categoryID: string | undefined;
 }
@@ -18,7 +18,9 @@ const Hero = ({ categoryID }: HeroType) => {
   }, []);
 
   return (
-    <div className="relative h-[550px] md:h-[600px] lg:h-[650px] xl:h-[750px] bg-fixed z-10">
+    <div
+     data-test="hero-wrapper"
+     className="relative h-[550px] md:h-[600px] lg:h-[650px] xl:h-[750px] bg-fixed z-10">
       {!heroLoaded ? <Skeleton /> : null}
       <img
         className={!heroLoaded ? "hidden" : "object-cover w-full h-full"}

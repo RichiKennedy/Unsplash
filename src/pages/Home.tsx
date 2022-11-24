@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "../components/Header";
-import Images from "../components/Images";
-import Hero from "../components/Hero";
+import Header from "../components/Header/Header";
+import Hero from "../components/hero/Hero";
 import Modal from "../subComponents/Modal";
 import { ImageType } from "../types/imageTypes"
+import ImageGallery from "../components/ImageGallery/ImageGallery";
 interface HomeProps {
   onImageClick: (clickedImage: ImageType) => void;
   modalImage: ImageType | undefined;
@@ -18,7 +18,7 @@ const Home = ({onImageClick, modalImage, setModalImage, isOpen, setIsOpen}: Home
       <Header homePage={true}/>
       <Hero categoryID={undefined}  />
       {modalImage && <Modal modalImage={modalImage} setModalImage={setModalImage} isOpen={isOpen} setIsOpen={setIsOpen} />}
-      <Images onImageClick={onImageClick} />
+      <ImageGallery onImageClick={onImageClick} />
     </div>
   );
 };

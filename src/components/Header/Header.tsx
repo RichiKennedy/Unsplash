@@ -1,11 +1,11 @@
 import { useEffect, useState, CSSProperties } from "react";
 import { FaUnsplash, FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import ApiError from "../subComponents/ApiError";
-import CategoryItem from "../subComponents/CategoryItem";
-import Error from "../subComponents/Error";
-import SearchBar from "../subComponents/SearchBar";
-import { CategoryType } from "../types/categoryTypes";
+import ApiError from "../../subComponents/ApiError";
+import CategoryItem from "../../subComponents/CategoryItem";
+import Error from "../../subComponents/Error";
+import SearchBar from "../../subComponents/SearchBar";
+import { CategoryType } from "../../types/categoryTypes";
 
 interface HeaderProps {
   homePage: boolean;
@@ -54,6 +54,7 @@ const Header = ({ homePage }: HeaderProps) => {
 
   return (
     <main
+      data-test="header-wrapper"
       className="fixed flex justify-start w-[100vw] h-[12vh] lg:h-[18vh] duration-150 ease-in top-0 z-20 shadow-md"
       style={{
         backgroundColor: cssStyles.backgroundColor,
