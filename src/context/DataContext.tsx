@@ -11,7 +11,7 @@ export type ContextShape = {
   setInputValue: (arg: string) => void;
   hasInputValue: boolean;
   setHasInputValue: (arg: boolean) => void;
-  images: Array<string>;
+  images: Array<ImageType>;
   hasError: boolean;
   setHasError: (arg: boolean) => void;
   hasApiError: boolean;
@@ -36,7 +36,7 @@ const REACT_APP_KEY = process.env.REACT_APP_KEY;
 const REACT_APP_RANDOM_IMAGE_KEY = process.env.REACT_APP_RANDOM_IMAGE_KEY;
 
 export const MyContextProvider = ({ children }: ContextProps) => {
-  const [images, setImages] = useState<Array<string>>([]);
+  const [images, setImages] = useState<Array<ImageType>>([]);
   const [randomImage, setRandomImage] = useState<ImageType>({} as ImageType);
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
@@ -46,11 +46,11 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const [topic, setTopic] = useState("");
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const dataFetchedRef = useRef(false);
+  
 
   const apiFetch = (
     url: string,
-    onSuccess: (result: Array<string>) => void
+    onSuccess: (result: Array<ImageType>) => void
   ) => {
     setImageLoaded(false);
     fetch(url)
@@ -90,7 +90,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
 
     apiFetch(
       `https://api.unsplash.com/search/photos?page=${pagToUse}&per_page=10&query=${valueToUse}&client_id=${REACT_APP_KEY}`,
-      (result: Array<string>) => {
+      (result: Array<ImageType>) => {
         setHasInputValue(true);
         setImages(clearSearch ? [...result] : [...images, ...result]);
         setPage(page + 1);
@@ -101,7 +101,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
   const getRandomImages = () => {
     apiFetch(
       `https://api.unsplash.com/photos/random?count=10&client_id=${REACT_APP_KEY}`,
-      (result: Array<string>) => {
+      (result: Array<ImageType>) => {
         setImages([...images, ...result]);
       }
     );
@@ -133,13 +133,6 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setHeroLoaded(false);
       });
   };
-
-  useEffect(() => {
-    if (dataFetchedRef.current) return;
-    dataFetchedRef.current = true;
-    getSplashImage();
-    getRandomImages();
-  }, []);
 
   return (
     <MyContext.Provider
