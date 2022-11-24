@@ -24,6 +24,4 @@ it('should change background-color to white if not home', () => {
     render(<BrowserRouter><Header homePage={false} /></BrowserRouter>)
     const header = screen.getByTestId('header-wrapper');
     expect(header).toHaveStyle('background-color: white');
-    
-    
 })
