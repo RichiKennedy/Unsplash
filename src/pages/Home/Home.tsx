@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "../components/Header/Header";
-import Hero from "../components/hero/Hero";
-import Modal from "../subComponents/Modal";
-import { ImageType } from "../types/imageTypes"
-import ImageGallery from "../components/ImageGallery/ImageGallery";
+import Header from "../../components/Header/Header";
+import Hero from "../../components/hero/Hero";
+import Modal from "../../subComponents/Modal";
+import { ImageType } from "../../types/imageTypes"
+import ImageGallery from "../../components/ImageGallery/ImageGallery";
 interface HomeProps {
   onImageClick: (clickedImage: ImageType) => void;
   modalImage: ImageType | undefined;
@@ -14,7 +14,7 @@ interface HomeProps {
 
 const Home = ({onImageClick, modalImage, setModalImage, isOpen, setIsOpen}: HomeProps) => {
   return (
-    <div>
+    <div data-test='home-wrapper' >
       <Header homePage={true}/>
       <Hero categoryID={undefined}  />
       {modalImage && <Modal modalImage={modalImage} setModalImage={setModalImage} isOpen={isOpen} setIsOpen={setIsOpen} />}
