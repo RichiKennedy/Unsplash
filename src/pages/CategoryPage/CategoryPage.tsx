@@ -1,18 +1,18 @@
-import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import Hero from "../../components/hero/Hero";
-import ImageGallery from "../../components/ImageGallery/ImageGallery";
-import MyContext from "../../context/DataContext";
-import Modal from "../../subComponents/Modal";
-import { ImageType } from "../../types/imageTypes";
+import React, { useContext, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import Header from '../../components/Header/Header'
+import Hero from '../../components/hero/Hero'
+import ImageGallery from '../../components/ImageGallery/ImageGallery'
+import MyContext from '../../context/DataContext'
+import Modal from '../../subComponents/Modal'
+import { ImageType } from '../../types/imageTypes'
 
 export interface CategoryPageProps {
-  onImageClick: (clickedImage: ImageType) => void;
-  modalImage: ImageType | undefined;
-  setModalImage: (arg: ImageType | undefined) => void;
-  isOpen: boolean;
-  setIsOpen: (arg: boolean) => void;
+  onImageClick: (clickedImage: ImageType) => void
+  modalImage: ImageType | undefined
+  setModalImage: (arg: ImageType | undefined) => void
+  isOpen: boolean
+  setIsOpen: (arg: boolean) => void
 }
 
 const CategoryPage = ({
@@ -22,20 +22,21 @@ const CategoryPage = ({
   isOpen,
   setIsOpen,
 }: CategoryPageProps) => {
-  const { setTopic, setInputValue, fetchUnsplashImages, getSplashImage } = useContext(MyContext);
-  const { categoryID } = useParams();
+  const { setTopic, setInputValue, fetchUnsplashImages, getSplashImage } =
+    useContext(MyContext)
+  const { categoryID } = useParams()
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    setInputValue(categoryID || "");
-    setTopic(categoryID || "");
-    fetchUnsplashImages(true, 1, categoryID);
-    getSplashImage(categoryID);
-  }, [categoryID]);
+    window.scrollTo(0, 0)
+    setInputValue(categoryID || '')
+    setTopic(categoryID || '')
+    fetchUnsplashImages(true, 1, categoryID)
+    getSplashImage(categoryID)
+  }, [categoryID])
 
   return (
     <div data-test="category-page-wrapper">
-      <Header homePage={true} />
+      <Header homePage />
       <Hero categoryID={categoryID} />
       {modalImage && (
         <Modal
@@ -47,7 +48,7 @@ const CategoryPage = ({
       )}
       <ImageGallery onImageClick={onImageClick} />
     </div>
-  );
-};
+  )
+}
 
-export default CategoryPage;
+export default CategoryPage
