@@ -18,10 +18,6 @@ const Hero = ({ categoryID }: HeroType) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
-    console.log(randomImage)
-  }, [randomImage])
-
   return (
     <div
       data-test="hero-wrapper"
