@@ -32,6 +32,7 @@ const CategoryPage = ({
     setTopic(categoryID || '')
     fetchUnsplashImages(true, 1, categoryID)
     getSplashImage(categoryID)
+    // only want a re-render when categoryID has updated
   }, [categoryID])
 
   return (

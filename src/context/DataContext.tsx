@@ -29,7 +29,6 @@ export type ContextShape = {
 // eslint-disable-next-line prefer-destructuring
 const REACT_APP_KEY = process.env.REACT_APP_KEY
 
-
 // eslint-disable-next-line prefer-destructuring
 const REACT_APP_KEY_RANDOM = process.env.REACT_APP_KEY_RANDOM
 
@@ -108,8 +107,9 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       }
     )
   }
-
-  const getSplashImage = () => {
+  // need to pass this value into this function in order to set topic to the string clicked on
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const getSplashImage = (topic?: string) => {
     const splashImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_KEY}`
     const dynamicHero = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&query=${topic}&client_id=${REACT_APP_KEY}`
     setHeroLoaded(false)
@@ -135,7 +135,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setHeroLoaded(false)
       })
   }
-
+  // unsure on weather to implement useMemo or keep it as is
   // const contextValue = useMemo(
   //   () => ({
   //     fetchUnsplashImages,
