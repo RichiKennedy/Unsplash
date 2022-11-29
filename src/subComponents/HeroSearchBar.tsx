@@ -1,17 +1,18 @@
-import { useContext } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
-import MyContext from "../context/DataContext";
+import React, { useContext } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai'
+import MyContext from '../context/DataContext'
 
 const HeroSearchBar = () => {
-  const { fetchUnsplashImages, inputValue, setInputValue } = useContext(MyContext);
+  const { fetchUnsplashImages, inputValue, setInputValue } =
+    useContext(MyContext)
 
   return (
     <div className=" flex items-center  rounded-sm py-2 shadow-sm w-full mt-5 bg-white   ">
       <form
         className="flex w-[100%]"
         onSubmit={(e) => {
-          e.preventDefault();
-          fetchUnsplashImages(true);
+          e.preventDefault()
+          fetchUnsplashImages(true)
         }}
       >
         <input
@@ -28,7 +29,7 @@ const HeroSearchBar = () => {
         />
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default HeroSearchBar;
+export default HeroSearchBar
