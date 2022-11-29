@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import { BsFillArrowDownSquareFill } from "react-icons/bs";
-import { ImageType } from "../types/imageTypes";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import Skeleton from "./Skeleton";
+import React, { useState } from 'react'
+import { BsFillArrowDownSquareFill } from 'react-icons/bs'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { ImageType } from '../types/imageTypes'
+import 'react-lazy-load-image-component/src/effects/blur.css'
+import Skeleton from './Skeleton'
+
 interface ImageProps {
-  image: ImageType;
-  onImageClick: (clickedImage: ImageType) => void;
+  image: ImageType
+  onImageClick: (clickedImage: ImageType) => void
 }
 
 const Image = ({ image, onImageClick }: ImageProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageLoading, setImageLoading] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [imageLoading, setImageLoading] = useState(false)
 
   const handleClick = (clickedImage: ImageType) => {
-    onImageClick(clickedImage);
-  };
+    onImageClick(clickedImage)
+  }
 
   return (
     <div className="relative w-[100%]">
@@ -31,6 +32,8 @@ const Image = ({ image, onImageClick }: ImageProps) => {
       <div
         className="absolute top-0 right-0 bottom-0 left-0 bg-black/30 opacity-0 hover:opacity-100 text-white flex justify-between items-end cursor-zoom-in"
         onClick={() => handleClick(image)}
+        role="button"
+        tabIndex={0}
       >
         <div className="flex items-center p-5 gap-2 h-[80px]">
           <img
@@ -47,7 +50,7 @@ const Image = ({ image, onImageClick }: ImageProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Image;
+export default Image
