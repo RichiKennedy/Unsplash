@@ -1,28 +1,35 @@
-import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "../../subComponents/Loader";
-import React, { useContext, useEffect, useRef } from "react";
-import MyContext from "../../context/DataContext";
-import Image from "../../subComponents/Image";
-import { ImageType } from "../../types/imageTypes";
-import Masonry from "react-smart-masonry";
+import React, { useContext, useEffect, useRef } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import Masonry from 'react-smart-masonry'
+import MyContext from '../../context/DataContext'
+import Image from '../../subComponents/Image'
+import { ImageType } from '../../types/imageTypes'
+import Loader from '../../subComponents/Loader'
+
 export interface ImageGalleryProps {
-  onImageClick: (clickedImage: ImageType) => void;
+  onImageClick: (clickedImage: ImageType) => void
 }
 
 const ImageGallery = ({ onImageClick }: ImageGalleryProps) => {
-  const {images, hasInputValue, getRandomImages, fetchUnsplashImages, getSplashImage,} = useContext(MyContext);
-  const breakpoints = { mobile: 0, tablet: 600, laptop: 1000, desktop: 1600 };
-  const dataFetchedRef = useRef(false);
+  const {
+    images,
+    hasInputValue,
+    getRandomImages,
+    fetchUnsplashImages,
+    getSplashImage,
+  } = useContext(MyContext)
+  const breakpoints = { mobile: 0, tablet: 600, laptop: 1000, desktop: 1600 }
+  const dataFetchedRef = useRef(false)
 
   useEffect(() => {
-    if (dataFetchedRef.current) return;
-    dataFetchedRef.current = true;
-    getSplashImage();
-    getRandomImages();
-  }, []);
+    if (dataFetchedRef.current) return
+    dataFetchedRef.current = true
+    getSplashImage()
+    getRandomImages()
+  }, [])
 
   return (
-    <>
+    <div>
       {images ? (
         <section
           data-test="image-gallery-wrapper"
@@ -33,9 +40,9 @@ const ImageGallery = ({ onImageClick }: ImageGalleryProps) => {
             next={() =>
               !hasInputValue ? getRandomImages() : fetchUnsplashImages()
             }
-            hasMore={true}
+            hasMore
             loader={<Loader />}
-            hasChildren={true}
+            hasChildren
             className="max-w-[1200px]"
           >
             <Masonry
@@ -56,8 +63,8 @@ const ImageGallery = ({ onImageClick }: ImageGalleryProps) => {
           </InfiniteScroll>
         </section>
       ) : null}
-    </>
-  );
-};
+    </div>
+  )
+}
 
-export default ImageGallery;
+export default ImageGallery
