@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry from 'react-smart-masonry'
 import MyContext from '../../context/DataContext'
@@ -11,22 +11,9 @@ export interface ImageGalleryProps {
 }
 
 const ImageGallery = ({ onImageClick }: ImageGalleryProps) => {
-  const {
-    images,
-    hasInputValue,
-    getRandomImages,
-    fetchUnsplashImages,
-    getSplashImage,
-  } = useContext(MyContext)
+  const { images, hasInputValue, getRandomImages, fetchUnsplashImages } =
+    useContext(MyContext)
   const breakpoints = { mobile: 0, tablet: 600, laptop: 1000, desktop: 1600 }
-  const dataFetchedRef = useRef(false)
-
-  useEffect(() => {
-    if (dataFetchedRef.current) return
-    dataFetchedRef.current = true
-    getSplashImage()
-    getRandomImages()
-  }, [])
 
   return (
     <div>
