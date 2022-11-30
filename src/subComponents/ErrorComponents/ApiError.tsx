@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { GrClose } from 'react-icons/gr'
-import MyContext from '../context/DataContext'
-import '../styles/animations.css'
+import MyContext from '../../context/DataContext'
+import '../../styles/animations.css'
 
 const ApiError = () => {
   const { hasApiError, setHasApiError } = useContext(MyContext)
@@ -15,10 +15,15 @@ const ApiError = () => {
   return (
     <section>
       {hasApiError ? (
-        <div className=" z-50 h-[5vh] absolute w-[100vw]  sm:w-[20vw] animate-slide-in">
+        <div
+          data-test="api-error-wrapper"
+          className=" z-50 h-[5vh] absolute w-[100vw]  sm:w-[20vw] animate-slide-in"
+        >
           <div className="flex items-center justify-between bg-red-500 text-white font-bold rounded-t px-4 py-2 h-[50%]">
             <h1>Warning</h1>
             <GrClose
+              data-test="button"
+              role="button"
               className=" cursor-pointer hover:scale-150 ease-in-out duration-300 animate-pulse"
               onClick={() => setHasApiError(false)}
             />

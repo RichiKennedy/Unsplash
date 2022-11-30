@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { GrClose } from 'react-icons/gr'
-import MyContext from '../context/DataContext'
-import '../styles/animations.css'
+import MyContext from '../../context/DataContext'
+import '../../styles/animations.css'
 
 const Error = () => {
   const { hasError, setHasError } = useContext(MyContext)
