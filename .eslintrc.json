@@ -1,0 +1,100 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"airbnb",
+		"airbnb-typescript",
+		"airbnb/hooks",
+		"prettier"
+	],
+	"overrides": [
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+	},
+	"project": "./tsconfig.json"
+	},
+	"plugins": [
+		"react",
+		"@typescript-eslint",
+		"prettier"
+	],
+	"rules": {
+		"prettier/prettier": "warn",
+
+		"indent": [
+			"off",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
+		"semi": [
+			"error",
+			"never"
+		],
+		"max-len": [
+			"error",
+			{
+				"code": 120,
+				"tabWidth": 2,
+				"ignoreComments": true,
+				"ignoreUrls": true,
+				"ignoreStrings": true,
+				"ignoreTemplateLiterals": true
+			}
+		],
+
+		"jsx-a11y/click-events-have-key-events": "off",
+		"jsx-quotes": ["error", "prefer-double"],
+
+		"react/jsx-curly-brace-presence": "off",
+		"react/jsx-curly-newline": "off",
+		"react/jsx-indent": "off",
+		"react/jsx-indent-props": "off",
+		"react/require-default-props": "off",
+		"react/function-component-definition": "off",
+		"react-hooks/exhaustive-deps": "warn",
+		"react/jsx-no-constructed-context-values": "warn",
+		"react/jsx-filename-extension": [
+			1,
+			{ "extensions": [".js", ".jsx", ".tsx", ".ts"] }
+		],
+		"react/self-closing-comp": ["warn", {
+			"component": true,
+			"html": true
+		}],
+
+		"no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": ["error"],
+		"comma-dangle": "off",
+		"@typescript-eslint/comma-dangle": "off",
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{
+					"selector": "enumMember",
+					"format": ["PascalCase", "UPPER_CASE"]
+			},
+			{
+					"selector": "variable",
+					"format": ["camelCase", "UPPER_CASE", "PascalCase"]
+			}
+		]
+	}
+}

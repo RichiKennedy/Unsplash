@@ -1,27 +1,28 @@
-import { useContext } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
-import { useLocation, useNavigate } from "react-router-dom";
-import MyContext from "../context/DataContext";
+import React, { useContext } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { useLocation, useNavigate } from 'react-router-dom'
+import MyContext from '../context/DataContext'
 
 const SearchBar = () => {
-  const { fetchUnsplashImages, inputValue, setInputValue } = useContext(MyContext);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { fetchUnsplashImages, inputValue, setInputValue } =
+    useContext(MyContext)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const handleSearch = () => {
-    fetchUnsplashImages(true);
-    if (location.pathname !== "/") {
-      navigate("/");
+    fetchUnsplashImages(true)
+    if (location.pathname !== '/') {
+      navigate('/')
     }
-  };
+  }
 
   return (
     <div>
       <form
         className="flex items-center border-2 rounded-full py-2 shadow-sm w-[70vw] sm:w-[50vw] bg-white"
         onSubmit={(e) => {
-          e.preventDefault();
-          handleSearch();
+          e.preventDefault()
+          handleSearch()
         }}
       >
         <input
@@ -38,7 +39,7 @@ const SearchBar = () => {
         />
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar

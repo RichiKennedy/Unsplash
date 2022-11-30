@@ -1,7 +1,5 @@
-import React from "react";
+import React from 'react'
 
-const NoPage = () => {
-  return <div data-test='no-page-wrapper'>NoPage</div>;
-};
+const NoPage = () => <div data-test="no-page-wrapper">NoPage</div>
 
-export default NoPage;
+export default NoPage

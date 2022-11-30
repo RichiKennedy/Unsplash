@@ -1,21 +1,19 @@
-import React, { useContext, useEffect } from "react";
-import MyContext from "../context/DataContext";
-import { GrClose } from "react-icons/gr";
-import "../styles/animations.css"
-
+import React, { useContext, useEffect } from 'react'
+import { GrClose } from 'react-icons/gr'
+import MyContext from '../context/DataContext'
+import '../styles/animations.css'
 
 const Error = () => {
-  const { hasError, setHasError } = useContext(MyContext);
+  const { hasError, setHasError } = useContext(MyContext)
   useEffect(() => {
     if (hasError === true) {
       setTimeout(() => {
-        setHasError(false);
-      }, 5000);
+        setHasError(false)
+      }, 5000)
     }
-  }, [hasError, setHasError]);
-
+  }, [hasError, setHasError])
   return (
-    <>
+    <section>
       {hasError ? (
         <div
           id="slide"
@@ -33,8 +31,8 @@ const Error = () => {
           </div>
         </div>
       ) : null}
-    </>
-  );
-};
+    </section>
+  )
+}
 
-export default Error;
+export default Error
