@@ -17,10 +17,10 @@ const renderApiError = (
 ) => {
 return (
   <MyContext.Provider value={mockContextTrue} >
-  <BrowserRouter>
-  <ApiError />
-  </BrowserRouter>
-    </MyContext.Provider>
+    <BrowserRouter>
+      <ApiError />
+    </BrowserRouter>
+  </MyContext.Provider>
 )
 }
    

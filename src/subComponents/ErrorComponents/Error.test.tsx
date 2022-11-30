@@ -17,9 +17,9 @@ const renderError = (
 ) => {
   return (
     <MyContext.Provider value={mockContextTrue} >
-    <BrowserRouter>
-    <Error />
-    </BrowserRouter>
+      <BrowserRouter>
+        <Error />
+      </BrowserRouter>
     </MyContext.Provider>
   )
 }
