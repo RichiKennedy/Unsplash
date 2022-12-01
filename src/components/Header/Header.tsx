@@ -1,9 +1,9 @@
 import React, { useEffect, useState, CSSProperties } from 'react'
 import { FaUnsplash, FaAngleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import ApiError from '../../subComponents/ApiError'
+import ApiError from '../../subComponents/ErrorComponents/ApiError'
 import CategoryItem from '../../subComponents/CategoryItem'
-import Error from '../../subComponents/Error'
+import Error from '../../subComponents/ErrorComponents/Error'
 import SearchBar from '../../subComponents/SearchBar'
 import { CategoryType } from '../../types/categoryTypes'
 
