@@ -23,7 +23,6 @@ const ApiError = () => {
             <h1>Warning</h1>
             <GrClose
               data-test="button"
-              role="button"
               className=" cursor-pointer hover:scale-150 ease-in-out duration-300 animate-pulse"
               onClick={() => setHasApiError(false)}
             />

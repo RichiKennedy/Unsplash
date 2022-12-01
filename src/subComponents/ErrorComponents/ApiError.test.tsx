@@ -1,4 +1,4 @@
-import { fireEvent, getByRole, getByTestId, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import MyContext from "../../context/DataContext"
 import ApiError from "./ApiError"
@@ -36,6 +36,14 @@ it('should register click when clicked on', () => {
     fireEvent.click(button)
     expect(mockContextTrue.setHasApiError).toHaveBeenCalledTimes(1)
 })
+
+// wanting to test that wrapper does not exist once button is clicked, but not working
+// it('should not render once button clicked', async () => {
+//   render(renderApiError(mockContextTrue))
+//   const button = screen.getByTestId("button")
+//   fireEvent.click(button)
+//   await waitFor(() => expect(screen.queryByTestId("api-error-wrapper")).toBeNull())
+// })
 
 it('should render null if state is false', () => {
   render(renderApiError(mockContextFalse))
