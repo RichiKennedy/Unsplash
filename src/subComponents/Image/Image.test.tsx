@@ -36,19 +36,9 @@ const mockImage: any = {
 }
 const mockOnImageClick: any = jest.fn()
 
-const mockLoadedTrue: any = {
-  imageLoaded: true,
-  setHasApiError: jest.fn()
-}
-const mockLoadedFalse: any = {
-  imageLoaded: false,
-  setHasApiError: jest.fn()
-}
-
 const renderImage = (
   image: ImageType,
-  onImageClick: (clickedImage: ImageType) => void,
-  
+  onImageClick: (clickedImage: ImageType) => void, 
 ) => {
   render (
     <BrowserRouter>
@@ -60,12 +50,12 @@ const renderImage = (
 describe('image component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-
   });
   it('should render image component', () => {
     renderImage( mockImage, mockOnImageClick )
     expect(screen.getByTestId("image-wrapper")).toBeDefined()
     expect(screen.getByTestId("image")).toBeDefined()
+    expect(screen.queryByTestId("place-holder")).not.toBeInTheDocument()
     expect(screen.getByRole("button")).toBeDefined()
   
   })
@@ -74,5 +64,6 @@ describe('image component', () => {
      renderImage(mockImage, mockOnImageClick)
      const button = screen.getByRole("button")
      fireEvent.click(button)
+     expect(mockOnImageClick).toBeCalledTimes(1)
   })
 })
