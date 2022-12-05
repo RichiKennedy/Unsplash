@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BsFillArrowDownSquareFill } from 'react-icons/bs'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { ImageType } from '../types/imageTypes'
+import { ImageType } from '../../types/imageTypes'
 import 'react-lazy-load-image-component/src/effects/blur.css'
-import Skeleton from './Skeleton'
+import Skeleton from '../Skeleton'
 
 interface ImageProps {
   image: ImageType
@@ -19,9 +19,10 @@ const Image = ({ image, onImageClick }: ImageProps) => {
   }
 
   return (
-    <div className="relative w-[100%]">
+    <div data-test="image-wrapper" className="relative w-[100%]">
       {!imageLoaded && imageLoading ? <Skeleton /> : null}
       <LazyLoadImage
+        data-test="image"
         className="w-full object-cover h-full"
         key={image.id}
         src={image.urls.small}
