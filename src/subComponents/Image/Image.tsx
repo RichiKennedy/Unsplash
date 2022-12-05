@@ -12,7 +12,6 @@ interface ImageProps {
 
 const Image = ({ image, onImageClick }: ImageProps) => {
   const [imageLoaded, setImageLoaded] = useState(false)
-  const [imageLoading, setImageLoading] = useState(false)
 
   const handleClick = (clickedImage: ImageType) => {
     onImageClick(clickedImage)
@@ -20,7 +19,7 @@ const Image = ({ image, onImageClick }: ImageProps) => {
 
   return (
     <div data-test="image-wrapper" className="relative w-[100%]">
-      {!imageLoaded && imageLoading ? <Skeleton /> : null}
+      {!imageLoaded ? <Skeleton data-test="place-holder" /> : null}
       <LazyLoadImage
         data-test="image"
         className="w-full object-cover h-full"
@@ -28,7 +27,6 @@ const Image = ({ image, onImageClick }: ImageProps) => {
         src={image.urls.small}
         alt={image.alt_description}
         afterLoad={() => setImageLoaded(true)}
-        beforeLoad={() => setImageLoading(true)}
       />
       <div
         className="absolute top-0 right-0 bottom-0 left-0 bg-black/30 opacity-0 hover:opacity-100 text-white flex justify-between items-end cursor-zoom-in"
