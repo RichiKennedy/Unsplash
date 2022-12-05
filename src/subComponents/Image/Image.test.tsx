@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom"
 import { ImageType } from "../../types/imageTypes"
+import Skeleton from "../Skeleton";
 import Image from "./Image"
 
 const mockImage: any = {
@@ -35,19 +36,31 @@ const mockImage: any = {
 }
 const mockOnImageClick: any = jest.fn()
 
+const mockLoadedTrue: any = {
+  imageLoaded: true,
+  setHasApiError: jest.fn()
+}
+const mockLoadedFalse: any = {
+  imageLoaded: false,
+  setHasApiError: jest.fn()
+}
+
 const renderImage = (
   image: ImageType,
   onImageClick: (clickedImage: ImageType) => void,
+  
 ) => {
   render (
     <BrowserRouter>
     <Image image={image} onImageClick={onImageClick} />
+    <Skeleton />
     </BrowserRouter>
   )
 };
 describe('image component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
   });
   it('should render image component', () => {
     renderImage( mockImage, mockOnImageClick )
@@ -57,7 +70,9 @@ describe('image component', () => {
   
   })
 
-  it('should display placeholder if not fully loaded', () => {
-
+  it('should register click when image has been clicked on', () => {
+     renderImage(mockImage, mockOnImageClick)
+     const button = screen.getByRole("button")
+     fireEvent.click(button)
   })
 })
