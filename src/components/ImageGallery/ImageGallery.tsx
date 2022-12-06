@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry from 'react-smart-masonry'
 import MyContext from '../../context/DataContext'
-import Image from '../../subComponents/Image'
+import Image from '../../subComponents/Image/Image'
 import { ImageType } from '../../types/imageTypes'
 import Loader from '../../subComponents/Loader'
 
