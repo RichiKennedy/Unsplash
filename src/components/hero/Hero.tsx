@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MyContext from '../../context/DataContext'
 import HeroSearchBar from '../../subComponents/HeroSearchBar'
+import SearchBar from '../../subComponents/SearchBar'
 import Skeleton from '../../subComponents/Skeleton'
 
 interface HeroType {
@@ -50,7 +51,7 @@ const Hero = ({ categoryID }: HeroType) => {
               ? `Bringing you stunning photography highlighting ${categoryID}`
               : null}
           </p>
-          {!categoryID ? <HeroSearchBar /> : null}
+          {!categoryID ? <SearchBar /> : null}
         </div>
         <div className="flex items-center p-5 gap-2 h-[80px] w-full">
           <h1 className="text-gray-200">
