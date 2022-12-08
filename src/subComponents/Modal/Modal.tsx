@@ -7,8 +7,8 @@ import {
 } from 'react-icons/bs'
 import { CgUnavailable } from 'react-icons/cg'
 import { MdOutlineClose } from 'react-icons/md'
-import { ImageType } from '../types/imageTypes'
-import Skeleton from './Skeleton'
+import { ImageType } from '../../types/imageTypes'
+import Skeleton from '../Skeleton'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { REACT_APP_KEY }: any = process.env.REACT_APP_KEY
@@ -37,6 +37,7 @@ const Modal = ({
     }
     setIsOpen(true)
   }, [modalImage])
+
   const closeModal = () => {
     setIsOpen(false)
     setZoomedIn(false)
@@ -45,8 +46,8 @@ const Modal = ({
 
   const renderZoomContent = () => {
     const classes = zoomedIn
-      ? 'flex items-center justify-center min-h-[80%] min-w-[100%]'
-      : 'w-[100%] h-[65%] sm:h-[80%] md:w-[90%] md:h-[80%] lg:w-[900px] lg:h-[80%] flex items-center justify-center'
+      ? 'bg-white flex items-center justify-center min-h-[80%] min-w-[100%]'
+      : 'bg-green-300 w-[100%] h-[65%] sm:h-[80%] md:w-[90%] md:h-[80%] lg:w-[900px] lg:h-[80%] flex items-center justify-center'
     const src = zoomedIn ? modalImage.urls.raw : modalImage.urls.regular
     const zoomCursor = zoomedIn
       ? 'hover: cursor-zoom-out opacity-0 hover:opacity-100 absolute top-0 right-0 bottom-0 left-0 flex justify-end'
@@ -57,16 +58,18 @@ const Modal = ({
       <BsArrowsAngleExpand className="h-7 w-7 m-3 text-white" />
     )
     return (
-      <section className={classes}>
+      <section data-test="image-wrapper" className={classes}>
         <div className="relative w-full h-full flex items-center justify-center">
           {!loaded ? <Skeleton /> : null}
           <img
+            data-test="image"
             className="object-cover w-full h-full"
             src={src}
             alt={modalImage.alt_description}
             onLoad={() => setLoaded(true)}
           />
           <div
+            data-test="zoom-button"
             onClick={() => toggleZoom()}
             className={zoomCursor}
             role="button"
@@ -82,9 +85,13 @@ const Modal = ({
   return (
     <section>
       {isOpen && (
-        <div className="fixed top-0 left-0 z-50 w-screen h-[100vh] bg-black/70 flex flex-col justify-center items-center">
+        <div
+          data-test="modal-wrapper"
+          className="fixed top-0 left-0 z-50 w-screen h-[100vh] bg-black/70 flex flex-col justify-center items-center"
+        >
           <div className="w-full">
             <MdOutlineClose
+              data-test="close-modal-button"
               className="w-8 h-8 cursor-pointer fill-current lg:translate-y-10  text-white m-5 hover:scale-125 duration-150 ease-out -translate-y-10"
               onClick={() => closeModal()}
             />
@@ -92,29 +99,42 @@ const Modal = ({
           <div className="bg-white w-full md:w-[90%] h-[80%] lg:h-[90%] xl:h-full flex items-center justify-between flex-col -translate-y-10 overflow-scroll">
             <nav className="flex items-center justify-between p-3 md:p-5 w-full">
               <div className="flex items-center  gap-2 h-[80px] w-[65%] ">
-                <img
-                  className="rounded-full h-7 w-7 sm:h-12 sm:w-12 "
-                  src={modalImage.user.profile_image.large}
-                  alt={modalImage.alt_description}
-                />
                 <a
-                  className=" text-sm sm:text-lg w-[90%] flex flex-col"
                   href={modalImage.user.links.html}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <h1 className=" hover:underline">{modalImage.user.name}</h1>
+                  <img
+                    className="rounded-full h-7 w-7 sm:h-12 sm:w-12 "
+                    src={modalImage.user.profile_image.large}
+                    alt={modalImage.alt_description}
+                  />
+                </a>
+                <section className=" text-sm sm:text-lg w-[90%] flex flex-col">
+                  <a
+                    href={modalImage.user.links.html}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <h1 className=" hover:underline">{modalImage.user.name}</h1>
+                  </a>
                   {modalImage.user.for_hire ? (
-                    <h1 className=" flex items-center text-xs sm:text-base text-lime-600 gap-1">
-                      Available for hire
-                      <FcApproval />
-                    </h1>
+                    <a
+                      href={modalImage.user.links.html}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <h1 className=" flex items-center text-xs sm:text-base text-lime-600 gap-1 hover:cursor-pointer">
+                        Available for hire
+                        <FcApproval />
+                      </h1>
+                    </a>
                   ) : (
                     <h1>
                       {modalImage.description ? modalImage.description : ''}
                     </h1>
                   )}
-                </a>
+                </section>
               </div>
               <a
                 className="w-[35%] flex items-center justify-end h-[80px]"
@@ -124,6 +144,7 @@ const Modal = ({
                 download
               >
                 <button
+                  data-test="download-button"
                   type="button"
                   className="flex items-center justify-between gap-1 md:gap-3 border px-1 md:px-2 py-1 rounded-md text-xs sm:text-base border-gray-400 hover:border-gray-900 text-gray-600 hover:text-gray-900 duration-150 ease-in-out"
                 >
