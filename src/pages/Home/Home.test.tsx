@@ -12,19 +12,11 @@ const mockContext: any = {
 const renderHomePage = (
   mockContext: any,
   onImageClick: (clickedImage: ImageType) => void,
-  modalImage: ImageType | undefined,
-  setModalImage: (arg: ImageType | undefined) => void,
-  isOpen: boolean,
-  setIsOpen: (arg: boolean) => void
 ) => {
   return (
     <MyContext.Provider value={mockContext}>
       <BrowserRouter>
         <Home
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-          setModalImage={setModalImage}
-          modalImage={modalImage}
           onImageClick={onImageClick}
         />
       </BrowserRouter>
@@ -37,10 +29,6 @@ it("should render home page", () => {
     renderHomePage(
       mockContext,
       jest.fn(),
-      undefined,
-      jest.fn(),
-      false,
-      jest.fn()
     )
   );
   expect(screen.getByTestId("home-wrapper")).toBeDefined();

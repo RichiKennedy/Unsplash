@@ -16,20 +16,12 @@ const mockContext = {
 const renderCategoryPage = (
   mockContext: any,
   onImageClick: (clickedImage: ImageType) => void,
-  modalImage: ImageType | undefined,
-  setModalImage: (arg: ImageType | undefined) => void,
-  isOpen: boolean,
-  setIsOpen: (arg: boolean) => void
 ) => {
   return (
     <MyContext.Provider value={mockContext}>
       <BrowserRouter>
         <CategoryPage
           onImageClick={onImageClick}
-          modalImage={modalImage}
-          setModalImage={setModalImage}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
         />
       </BrowserRouter>
     </MyContext.Provider>
@@ -41,10 +33,6 @@ it("category-page should render", () => {
     renderCategoryPage(
       mockContext,
       jest.fn(),
-      undefined,
-      jest.fn(),
-      false,
-      jest.fn()
     )
   );
   expect(screen.getByTestId("category-page-wrapper")).toBeDefined();
