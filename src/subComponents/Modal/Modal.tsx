@@ -46,8 +46,8 @@ const Modal = ({
 
   const renderZoomContent = () => {
     const classes = zoomedIn
-      ? 'bg-white flex items-center justify-center min-h-[80%] min-w-[100%]'
-      : 'bg-green-300 w-[100%] h-[65%] sm:h-[80%] md:w-[90%] md:h-[80%] lg:w-[900px] lg:h-[80%] flex items-center justify-center'
+      ? 'flex items-center justify-center min-h-[80%] min-w-[100%]'
+      : 'w-[100%] h-[65%] sm:h-[80%] md:w-[90%] md:h-[80%] lg:w-[900px] lg:h-[80%] flex items-center justify-center'
     const src = zoomedIn ? modalImage.urls.raw : modalImage.urls.regular
     const zoomCursor = zoomedIn
       ? 'hover: cursor-zoom-out opacity-0 hover:opacity-100 absolute top-0 right-0 bottom-0 left-0 flex justify-end'
@@ -100,11 +100,13 @@ const Modal = ({
             <nav className="flex items-center justify-between p-3 md:p-5 w-full">
               <div className="flex items-center  gap-2 h-[80px] w-[65%] ">
                 <a
+                  data-test="anchor-tag"
                   href={modalImage.user.links.html}
                   target="_blank"
                   rel="noreferrer"
                 >
                   <img
+                    data-test="profile-image"
                     className="rounded-full h-7 w-7 sm:h-12 sm:w-12 "
                     src={modalImage.user.profile_image.large}
                     alt={modalImage.alt_description}

@@ -17,7 +17,7 @@ const modalImageMock: any = {
       small: ""
     },
     links: {
-      html: "",
+      html: "URL",
       download_location: ""
     },
     for_hire: true
@@ -31,7 +31,7 @@ const modalImageMock: any = {
   },
   links: {
     html: "",
-    download_location: ""
+    download_location: "download-location"
   },
   description: ""
 }
@@ -72,7 +72,6 @@ describe('modal component', () => {
   })
 
   it('should expand image when zoom icon is clicked', () => {
-    const setZoomedInMock = jest.fn()
     renderModal(modalImageMock, jest.fn, true, jest.fn)
     const zoomButton = screen.getByTestId('zoom-button')
     const image = screen.getByTestId('image')
@@ -98,10 +97,11 @@ describe('modal component', () => {
     expect(modal).not.toBeInTheDocument()
   })
 
-  it('should follow file path of anchor tag once download button is clicked', () => {
+
+  it('should have correct anchor path on anchor tag', () => {
     renderModal(modalImageMock, jest.fn, true, jest.fn)
-    const downloadButton = screen.getByTestId('download-button')
-    fireEvent.click(downloadButton)
-    // expect(downloadButton).closest('a').toHaveAttribute('href', )
+    const anchorTag = screen.getByTestId('anchor-tag')
+    expect(anchorTag).toBeDefined()
+    expect(anchorTag).toHaveAttribute('href', 'URL');
   })
 })
