@@ -4,7 +4,7 @@ import Masonry from 'react-smart-masonry'
 import MyContext from '../../context/DataContext'
 import Image from '../../subComponents/Image/Image'
 import { ImageType } from '../../types/imageTypes'
-import Loader from '../../subComponents/Loader'
+import Loader from '../../subComponents/Loader/Loader'
 
 export interface ImageGalleryProps {
   onImageClick: (clickedImage: ImageType) => void
