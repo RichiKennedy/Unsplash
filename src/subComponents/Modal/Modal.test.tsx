@@ -18,7 +18,7 @@ const modalImageMock: any = {
     },
     links: {
       html: "URL",
-      download_location: ""
+      download_location: "download-location"
     },
     for_hire: true
   },
