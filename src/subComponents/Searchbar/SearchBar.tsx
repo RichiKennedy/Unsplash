@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useLocation, useNavigate } from 'react-router-dom'
-import MyContext from '../context/DataContext'
+import MyContext from '../../context/DataContext'
 
 interface SearchBarProps {
   classNames?: string
@@ -25,8 +25,9 @@ const SearchBar = ({ classNames }: SearchBarProps) => {
     'flex items-center border-2 rounded-full py-2 shadow-sm w-[70vw] sm:w-[50vw] bg-gray-100'
 
   return (
-    <div>
+    <section>
       <form
+        data-test="form-wrapper"
         className={searchBarClassnames}
         onSubmit={(e) => {
           e.preventDefault()
@@ -34,6 +35,7 @@ const SearchBar = ({ classNames }: SearchBarProps) => {
         }}
       >
         <input
+          data-test="input"
           className="pl-5 bg-transparent outline-none flex-grow text-sm text-black placeholder-gray-400"
           type="text"
           placeholder="Search high-resolution photos"
@@ -41,12 +43,13 @@ const SearchBar = ({ classNames }: SearchBarProps) => {
           onChange={(e) => setInputValue(e.target.value)}
         />
         <AiOutlineSearch
+          data-test="button"
           className="h-6 w-6 md:h-8 md:w-8 bg-gray-100 hover:bg-gray-200 hover:scale-105 duration-75 ease-in-out text-gray-900 rounded-full p-1 cursor-pointer mx-2"
           type="submit"
           onClick={() => handleSearch()}
         />
       </form>
-    </div>
+    </section>
   )
 }
 
