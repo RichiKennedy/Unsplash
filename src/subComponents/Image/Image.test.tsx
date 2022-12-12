@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom"
 import { ImageType } from "../../types/imageTypes"
-import Skeleton from "../Skeleton";
+import Skeleton from "../PlaceHolder/Skeleton";
 import Image from "./Image"
 
 const mockImage: any = {

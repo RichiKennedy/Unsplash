@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MyContext from '../../context/DataContext'
-import SearchBar from '../../subComponents/Searchbar/SearchBar'
-import Skeleton from '../../subComponents/Skeleton'
+import SearchBar from '../../subComponents/SearchBar/SearchBar'
+import Skeleton from '../../subComponents/PlaceHolder/Skeleton'
 
 interface HeroType {
   categoryID: string | undefined

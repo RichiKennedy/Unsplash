@@ -3,7 +3,7 @@ import { BsFillArrowDownSquareFill } from 'react-icons/bs'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { ImageType } from '../../types/imageTypes'
 import 'react-lazy-load-image-component/src/effects/blur.css'
-import Skeleton from '../Skeleton'
+import Skeleton from '../PlaceHolder/Skeleton'
 
 interface ImageProps {
   image: ImageType
