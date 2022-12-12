@@ -36,10 +36,8 @@ describe('search bar component', () => {
   })
 
   it('should input', () => {
-
     renderSearchBar(mockContext)
     const input = screen.getByTestId('input')
-    const button = screen.getByTestId('button')
     fireEvent.change(input, {target: {value: 'lorem ipsum'}})
     expect(mockContext.setInputValue).toHaveBeenCalledTimes(1)
     expect(input).toHaveTextContent("")
