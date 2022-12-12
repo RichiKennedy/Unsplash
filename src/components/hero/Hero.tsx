@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MyContext from '../../context/DataContext'
-import SearchBar from '../../subComponents/SearchBar/SearchBar'
+import SearchBar from '../../subComponents/Searchbar/SearchBar'
 import Skeleton from '../../subComponents/PlaceHolder/Skeleton'
 
 interface HeroType {
