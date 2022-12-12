@@ -8,7 +8,7 @@ import {
 import { CgUnavailable } from 'react-icons/cg'
 import { MdOutlineClose } from 'react-icons/md'
 import { ImageType } from '../../types/imageTypes'
-import Skeleton from '../Skeleton'
+import Skeleton from '../PlaceHolder/Skeleton'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { REACT_APP_KEY }: any = process.env.REACT_APP_KEY
