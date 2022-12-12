@@ -6,6 +6,7 @@ import Home from './pages/Home/Home'
 import NoPage from './pages/404ErrorPage/NoPage'
 import CategoryPage from './pages/CategoryPage/CategoryPage'
 import { ImageType } from './types/imageTypes'
+import Modal from './subComponents/Modal/Modal'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,9 +19,12 @@ function App() {
 
   useEffect(() => {
     if (isOpen) {
-      setScrollPosition(window.scrollY)
+      const { scrollY } = window
+      document.body.style.top = `-${scrollY}px`
       document.body.style.position = 'fixed'
+      setScrollPosition(scrollY)
     } else {
+      document.body.style.top = ''
       document.body.style.position = ''
       window.scrollTo(0, scrollPosition)
     }
@@ -29,33 +33,22 @@ function App() {
   return (
     <MyContextProvider>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              modalImage={modalImage}
-              setModalImage={setModalImage}
-              onImageClick={onImageClick}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
-          }
-        />
+        <Route path="/" element={<Home onImageClick={onImageClick} />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NoPage />} />
         <Route
           path="/:categoryID"
-          element={
-            <CategoryPage
-              onImageClick={onImageClick}
-              modalImage={modalImage}
-              setModalImage={setModalImage}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
-          }
+          element={<CategoryPage onImageClick={onImageClick} />}
         />
       </Routes>
+      {modalImage && (
+        <Modal
+          modalImage={modalImage}
+          setModalImage={setModalImage}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+      )}
     </MyContextProvider>
   )
 }
