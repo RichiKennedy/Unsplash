@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import ApiError from '../../subComponents/ErrorComponents/ApiError'
 import CategoryItem from '../../subComponents/CategoryItem/CategoryItem'
 import Error from '../../subComponents/ErrorComponents/Error'
-import SearchBar from '../../subComponents/SearchBar'
+import SearchBar from '../../subComponents/Searchbar/SearchBar'
 import { CategoryType } from '../../types/categoryTypes'
 
 interface HeaderProps {
