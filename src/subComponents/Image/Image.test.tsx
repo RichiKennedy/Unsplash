@@ -4,7 +4,7 @@ import { ImageType } from "../../types/imageTypes"
 import Skeleton from "../PlaceHolder/Skeleton";
 import Image from "./Image"
 
-const mockImage: any = {
+export const mockImage: any = {
   urls: "",
   alt_description: "",
   id: "",
