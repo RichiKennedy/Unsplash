@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode } from 'react'
+ import React, { createContext, useState, ReactNode } from 'react'
 import { ImageType } from '../types/imageTypes'
 
 export type ContextShape = {
@@ -107,7 +107,7 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       }
     )
   }
-  // need to pass this value into this function in order to set topic to the string clicked on
+  // Line below DISABLED - need to pass topic into this function, in order to set topic to the value clicked on
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const getSplashImage = (topic?: string) => {
     const splashImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_KEY}`
@@ -135,44 +135,6 @@ export const MyContextProvider = ({ children }: ContextProps) => {
         setHeroLoaded(false)
       })
   }
-  // unsure on weather to implement useMemo or keep it as is
-  // const contextValue = useMemo(
-  //   () => ({
-  //     fetchUnsplashImages,
-  //     inputValue,
-  //     setInputValue,
-  //     images,
-  //     hasError,
-  //     setHasError,
-  //     hasApiError,
-  //     setHasApiError,
-  //     randomImage,
-  //     getSplashImage,
-  //     getRandomImages,
-  //     hasInputValue,
-  //     setHasInputValue,
-  //     topic,
-  //     setTopic,
-  //     heroLoaded,
-  //     setHeroLoaded,
-  //     imageLoaded,
-  //     setImageLoaded,
-  //   }),
-  //   [
-  //     fetchUnsplashImages,
-  //     getRandomImages,
-  //     getSplashImage,
-  //     hasApiError,
-  //     hasError,
-  //     hasInputValue,
-  //     heroLoaded,
-  //     imageLoaded,
-  //     images,
-  //     inputValue,
-  //     randomImage,
-  //     topic,
-  //   ]
-  // )
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
