@@ -37,7 +37,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NoPage />} />
         <Route
-          path="/:categoryID"
+          path="/:theCategoryID"
           element={<CategoryPage onImageClick={onImageClick} />}
         />
       </Routes>

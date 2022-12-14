@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import Header from '../../components/Header/Header'
 import Hero from '../../components/hero/Hero'
-import Modal from '../../subComponents/Modal/Modal'
 import { ImageType } from '../../types/imageTypes'
 import ImageGallery from '../../components/ImageGallery/ImageGallery'
 import MyContext from '../../context/DataContext'
