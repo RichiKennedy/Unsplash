@@ -35,15 +35,15 @@ describe('search bar component', () => {
     expect(button).toBeInTheDocument()
   })
 
-  it('should input', () => {
+  it('should input and set value', () => {
     renderSearchBar(mockContext)
-    const input = screen.getByTestId('input')
+    const input = screen.getByTestId('input') as HTMLInputElement
     fireEvent.change(input, {target: {value: 'lorem ipsum'}})
     expect(mockContext.setInputValue).toHaveBeenCalledTimes(1)
-    expect(input).toHaveTextContent("")
+    expect(mockContext.setInputValue).toBeCalledWith('lorem ipsum')
   })
 
-  it('should call fetch function once clicked', () => {
+  it('should call fetch function once icon is clicked', () => {
     renderSearchBar(mockContext)
     const button = screen.getByTestId('button')
     fireEvent.click(button)
