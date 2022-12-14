@@ -6,6 +6,7 @@ import CategoryItem from '../../subComponents/CategoryItem/CategoryItem'
 import Error from '../../subComponents/ErrorComponents/Error'
 import SearchBar from '../../subComponents/Searchbar/SearchBar'
 import { CategoryType } from '../../types/categoryTypes'
+import categories from '../../pages/CategoryPage/CategoryData'
 
 interface HeaderProps {
   homePage: boolean
@@ -17,16 +18,7 @@ const Header = ({ homePage }: HeaderProps) => {
     color: 'white',
   })
 
-  const categories = [
-    { name: 'Architecture & Interiors', id: 'Architecture & Interiors' },
-    { name: 'Ocean', id: 'Ocean' },
-    { name: 'Current Events', id: 'Current Events' },
-    { name: 'Food & Drink', id: 'Food & Drink' },
-    { name: 'Fashion & Beauty', id: 'Fashion & Beauty' },
-    { name: 'Interior Design', id: 'Interior Design' },
-    { name: 'Street Art', id: 'Street Art' },
-    { name: 'Nature', id: 'Nature' },
-  ]
+
   useEffect(() => {
     const changeColor = () => {
       if (window.scrollY >= 100) {
