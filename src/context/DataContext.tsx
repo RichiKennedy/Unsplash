@@ -1,5 +1,4 @@
 import React, { createContext, useState, ReactNode } from 'react'
-import { useLocation } from 'react-router-dom'
 import { ImageType } from '../types/imageTypes'
 
 export type ContextShape = {
@@ -119,15 +118,12 @@ export const MyContextProvider = ({ children }: ContextProps) => {
     let url = ''
     if (!topic) {
       url = splashImageUrl
-      console.log('if')
-    } 
-    if (topic){
+    }
+    if (topic) {
       url = dynamicHero
-      console.log('else')
     }
     if (noPage) {
       url = noPageUrl
-      console.log('detecting no page')
     }
 
     fetch(url)
