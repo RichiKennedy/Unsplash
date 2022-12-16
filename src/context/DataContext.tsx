@@ -1,4 +1,5 @@
- import React, { createContext, useState, ReactNode } from 'react'
+import React, { createContext, useState, ReactNode } from 'react'
+import { useLocation } from 'react-router-dom'
 import { ImageType } from '../types/imageTypes'
 
 export type ContextShape = {
@@ -17,7 +18,7 @@ export type ContextShape = {
   hasApiError: boolean
   setHasApiError: (arg: boolean) => void
   randomImage: ImageType
-  getSplashImage: (topic?: string) => void
+  getSplashImage: (topic?: string, noPage?: boolean) => void
   getRandomImages: (topic?: string | null) => void
   topic: string
   setTopic: (arg: string) => void
@@ -107,13 +108,29 @@ export const MyContextProvider = ({ children }: ContextProps) => {
       }
     )
   }
+
   // Line below DISABLED - need to pass topic into this function, in order to set topic to the value clicked on
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  const getSplashImage = (topic?: string) => {
+  const getSplashImage = (topic?: string, noPage?: boolean) => {
     const splashImageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&client_id=${REACT_APP_KEY}`
     const dynamicHero = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&query=${topic}&client_id=${REACT_APP_KEY}`
+    const noPageUrl = `https://api.unsplash.com/photos/random?count=1&orientation=landscape&query=galaxy&client_id=${REACT_APP_KEY}`
     setHeroLoaded(false)
-    fetch(!topic ? splashImageUrl : dynamicHero)
+    let url = ''
+    if (!topic) {
+      url = splashImageUrl
+      console.log('if')
+    } 
+    if (topic){
+      url = dynamicHero
+      console.log('else')
+    }
+    if (noPage) {
+      url = noPageUrl
+      console.log('detecting no page')
+    }
+
+    fetch(url)
       .then(async (res) => {
         if (!res.ok) {
           setHasApiError(true)
