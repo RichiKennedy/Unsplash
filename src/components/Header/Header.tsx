@@ -1,12 +1,12 @@
 import React, { useEffect, useState, CSSProperties } from 'react'
-import { FaUnsplash, FaAngleRight } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { FaAngleRight } from 'react-icons/fa'
 import ApiError from '../../subComponents/ErrorComponents/ApiError'
 import CategoryItem from '../../subComponents/CategoryItem/CategoryItem'
 import Error from '../../subComponents/ErrorComponents/Error'
 import SearchBar from '../../subComponents/Searchbar/SearchBar'
 import { CategoryType } from '../../types/categoryTypes'
 import categories from '../../pages/CategoryPage/CategoryData'
+import Unsplash from '../../subComponents/Icons/Unsplash'
 
 interface HeaderProps {
   homePage: boolean
@@ -58,9 +58,7 @@ const Header = ({ homePage }: HeaderProps) => {
       <section className="flex items-center justify-between h-full w-full">
         <div className="h-[100%] w-[100%] flex flex-col items-start justify-evenly px-5">
           <div className="gap-5 flex w-full ">
-            <Link to="/">
-              <FaUnsplash className="h-11 w-11 sm:h-14 sm:w-14 cursor-pointer" />
-            </Link>
+            <Unsplash />
             <SearchBar />
           </div>
           <div className="flex w-full">
