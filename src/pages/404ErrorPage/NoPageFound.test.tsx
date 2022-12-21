@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
-import NoPage from "./NoPage"
+import NoPage from "./NoPageFound"
 
 it('should render no page component', () => {
     render(
