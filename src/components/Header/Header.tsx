@@ -1,5 +1,5 @@
 import React, { useEffect, useState, CSSProperties } from 'react'
-import { FaAngleRight } from 'react-icons/fa'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import ApiError from '../../subComponents/ErrorComponents/ApiError'
 import CategoryItem from '../../subComponents/CategoryItem/CategoryItem'
 import Error from '../../subComponents/ErrorComponents/Error'
@@ -18,10 +18,9 @@ const Header = ({ homePage }: HeaderProps) => {
     color: 'white',
   })
 
-
   useEffect(() => {
     const changeColor = () => {
-      if (window.scrollY >= 100) {
+      if (window.scrollY >= 1) {
         setCSSStyles({
           backgroundColor: 'white',
           color: 'black',
@@ -45,9 +44,9 @@ const Header = ({ homePage }: HeaderProps) => {
   }, [])
 
   return (
-    <main
+    <header
       data-test="header-wrapper"
-      className="fixed flex justify-start w-[100vw] h-[12vh] lg:h-[18vh] duration-150 ease-in top-0 z-20 shadow-md"
+      className="fixed flex  justify-start w-[100vw] h-[100px] md:h-[120px] duration-150 ease-in top-0 z-20 shadow-md"
       style={{
         backgroundColor: cssStyles.backgroundColor,
         color: cssStyles.color,
@@ -61,25 +60,29 @@ const Header = ({ homePage }: HeaderProps) => {
             <Unsplash />
             <SearchBar />
           </div>
-          <div className="flex w-full">
-            <ul className="w-[1200px] xl:w-[90%] flex items-center justify-between overflow-auto whitespace-nowrap gap-5">
+          <div className="flex w-full items-center gap-2">
+            <FaAngleLeft className="text-2xl lg:hidden block" />
+            <ul className="w-[1200px] xl:w-[90%] flex items-center justify-between overflow-scroll scroll-smooth scrollbar-hide whitespace-nowrap gap-5">
               {categories.map((category: CategoryType) => (
                 <CategoryItem category={category} key={category.id} />
               ))}
             </ul>
-            <ul className="flex items-center justify-between xl:justify-end px-5 gap-5 w-[400px] ">
+            <FaAngleRight className="text-2xl lg:hidden block" />
+
+            {/* MAY ADD AN ABOUT PAGE */}
+            {/* <ul className="flex items-center justify-between xl:justify-end px-5 gap-5 w-[400px] ">
               <FaAngleRight className="text-lg xl:hidden block" />
               <CategoryItem
                 category={{
                   id: 'about',
                   name: 'About',
                 }}
-              />
-            </ul>
+              />       
+          </ul> */}
           </div>
         </div>
       </section>
-    </main>
+    </header>
   )
 }
 

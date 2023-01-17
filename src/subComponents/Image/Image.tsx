@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BsFillArrowDownSquareFill } from 'react-icons/bs'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { ImageType } from '../../types/imageTypes'
 import 'react-lazy-load-image-component/src/effects/blur.css'
@@ -41,11 +40,6 @@ const Image = ({ image, onImageClick }: ImageProps) => {
             alt={image.alt_description}
           />
           <h1>{image.user.name}</h1>
-        </div>
-        <div className="flex items-center justify-end p-5  h-[80px]">
-          <h1>
-            <BsFillArrowDownSquareFill className="text-4xl cursor-pointer" />
-          </h1>
         </div>
       </div>
     </div>
