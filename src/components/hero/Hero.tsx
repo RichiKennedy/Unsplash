@@ -21,7 +21,7 @@ const Hero = ({ categoryID }: HeroType) => {
   return (
     <div
       data-test="hero-wrapper"
-      className="relative h-[50vh] lg:h-[70vh] bg-fixed z-10"
+      className="relative h-[50vh] sm:[70vh] lg:h-[70vh] bg-fixed z-10"
     >
       {!heroLoaded ? <Skeleton /> : null}
       <img
@@ -31,20 +31,20 @@ const Hero = ({ categoryID }: HeroType) => {
         alt={randomImage?.alt_description ? randomImage.alt_description : ''}
         key={randomImage?.id}
       />
-      <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/40 text-white flex items-center justify-between flex-col">
+      <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/40 text-white flex flex-col ">
         <div
           style={{ transform: `translateY(${offSetY * 0.35}px)` }}
           className={
             !categoryID
-              ? 'h-[76%] sm:h-[70%] w-full p-10 md:max-w-2xl md:p-0 flex items-center justify-end flex-col text-left'
-              : 'h-[80%] sm:h-[70%] p-10 md:p-0 flex items-center justify-end flex-col text-left'
+              ? 'h-[90%] sm:h-[80%] md:[80%] w-full p-16 sm:p-0 flex items-center justify-end flex-col'
+              : 'h-[90%] sm:h-[70%] p-16 md:p-0 flex items-center justify-end flex-col text-left'
           }
         >
-          <section className="w-[90vw] min-w-[250px] sm:w-[70vw] max-w-[800px]  text-left -translate-y-10 sm:translate-y-10 md:-translate-y-10">
-            <h1 className="w-full text-3xl lg:text-5xl mb-5 font-bold">
+          <section className="w-[90vw] h-[60%] flex flex-col justify-end min-w-[250px] sm:w-[70vw] max-w-[800px] text-left gap-3 pb-9">
+            <h1 className="w-full text-2xl sm:3xl lg:text-5xl font-bold">
               {!categoryID ? 'Unsplash' : categoryID}
             </h1>
-            <p className="w-full">
+            <p className=" w-full text-sm sm:text-lg">
               The internet’s source for visuals. <br />
               Powered by creators everywhere. <br />
               {categoryID
@@ -56,10 +56,15 @@ const Hero = ({ categoryID }: HeroType) => {
             ) : null}
           </section>
         </div>
-        <div className="flex items-center p-5 gap-2 h-[80px] w-full">
-          <h1 className="text-gray-200">
-            <strong>Photo</strong> by
-            <strong> {randomImage?.user?.name} </strong>
+
+        <div className="flex items-end  p-5 gap-2 h-[20%] sm:h-[30%] w-full ">
+          <h1 className="text-gray-200 flex gap-2">
+            Photo By
+            <a href={randomImage?.links?.html} target="_blank" rel="noreferrer">
+              <h1 className="text-gray-300 hover:text-white">
+                {randomImage?.user?.name}
+              </h1>
+            </a>
           </h1>
         </div>
       </div>
@@ -68,3 +73,4 @@ const Hero = ({ categoryID }: HeroType) => {
 }
 
 export default Hero
+
