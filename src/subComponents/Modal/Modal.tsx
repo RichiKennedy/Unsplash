@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { FcApproval } from 'react-icons/fc'
-import {
-  BsFillArrowDownSquareFill,
-  BsArrowsAngleExpand,
-  BsArrowsAngleContract,
-} from 'react-icons/bs'
+import { BsArrowsAngleExpand, BsArrowsAngleContract } from 'react-icons/bs'
 import { CgUnavailable } from 'react-icons/cg'
 import { MdOutlineClose } from 'react-icons/md'
 import { ImageType } from '../../types/imageTypes'
 import Skeleton from '../PlaceHolder/Skeleton'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { REACT_APP_KEY }: any = process.env.REACT_APP_KEY
 interface ModalProps {
   modalImage: ImageType
   setModalImage: (arg: ImageType | undefined) => void
@@ -97,8 +91,8 @@ const Modal = ({
             />
           </div>
           <div className="bg-white w-full md:w-[90%] h-[80%] lg:h-[90%] xl:h-full flex items-center justify-between flex-col -translate-y-10 overflow-scroll">
-            <nav className="flex items-center justify-between p-3 md:p-5 w-full">
-              <div className="flex items-center  gap-2 h-[80px] w-[65%] ">
+            <nav className="flex items-center justify-between p-3 w-full">
+              <div className="flex items-center gap-2 h-[70px] w-[65%]">
                 <a
                   data-test="anchor-tag"
                   href={modalImage.user.links.html}
@@ -126,7 +120,7 @@ const Modal = ({
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <h1 className=" flex items-center text-xs sm:text-base text-lime-600 gap-1 hover:cursor-pointer">
+                      <h1 className=" flex items-center text-xs sm:text-base gap-1 hover:cursor-pointer">
                         Available for hire
                         <FcApproval />
                       </h1>
@@ -138,22 +132,6 @@ const Modal = ({
                   )}
                 </section>
               </div>
-              <a
-                className="w-[35%] flex items-center justify-end h-[80px]"
-                target="_blank"
-                rel="noreferrer"
-                href={`${modalImage.links.download_location}}&client_id=${REACT_APP_KEY}`}
-                download
-              >
-                <button
-                  data-test="download-button"
-                  type="button"
-                  className="flex items-center justify-between gap-1 md:gap-3 border px-1 md:px-2 py-1 rounded-md text-xs sm:text-base border-gray-400 hover:border-gray-900 text-gray-600 hover:text-gray-900 duration-150 ease-in-out"
-                >
-                  Download
-                  <BsFillArrowDownSquareFill className="w-4 h-4 md:w-5 md:h-5 rounded-md cursor-pointer" />
-                </button>
-              </a>
             </nav>
             {renderZoomContent()}
             <footer className="w-full flex items-center justify-between">
