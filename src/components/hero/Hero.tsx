@@ -21,7 +21,7 @@ const Hero = ({ categoryID }: HeroType) => {
   return (
     <div
       data-test="hero-wrapper"
-      className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-screen bg-fixed z-10"
+      className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[85vh] bg-fixed z-10"
     >
       {!heroLoaded ? <Skeleton /> : null}
       <img
