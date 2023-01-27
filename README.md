@@ -1,49 +1,21 @@
-# Getting Started with Create React App
+I am a huge fan of Unsplash, so this project has been so much fun!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I have built a replica of Unspash's core functionality. I chose to build Unsplash with React and Typescript, allowing me to really deep dive into these languages more and become alot more confident with them. For styling I used Tailwind, the more I use Tailwind the more of a fan I become. 
 
-## Available Scripts
+What I really got out of this project was -
 
-In the project directory, you can run:
+. A deeper understanding of React - UseContext has been a blessing for state management and cancelling out unneccessary prop drilling
 
-### `npm start`
+. Typescript has really helped me slow down and understand the TYPE of value I am expecting to recieve or pass around my code. I will forever keep using this syntactic superset of JavaScript.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+. JEST  A deeper understanding of testing and how important it is to test my code before build.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+. Manipulation of an API endpoint to get back exactly what I want from the unsplash API
 
-### `npm test`
+. Furthering my knowledge of React-Routing - creating a dynamic page and a 404 No Page Found 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+My Biggest challenge with this project was figuring out how to implement the masonry grid layout that Unsplash use to showcase their images.
 
-### `npm run build`
+Check It Out! 👇🏼
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-##
-we are learning prs
+https://unsplash-qfu57jeuc-richikennedy.vercel.app/
