@@ -14,6 +14,8 @@ What I really got out of this project was -
 
 . Furthering my knowledge of React-Routing - creating a dynamic page and a 404 No Page Found 
 
+. Implementing Image placeholders 
+
 My Biggest challenge with this project was figuring out how to implement the masonry grid layout that Unsplash use to showcase their images.
 
 Check It Out! 👇🏼
