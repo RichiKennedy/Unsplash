@@ -46,7 +46,7 @@ const Header = ({ homePage }: HeaderProps) => {
   return (
     <header
       data-test="header-wrapper"
-      className="fixed flex  justify-start w-[100vw] h-[100px] md:h-[120px] duration-150 ease-in top-0 z-20 shadow-md"
+      className="fixed flex justify-start w-[100vw] h-[100px] md:h-[120px] duration-150 ease-in top-0 z-20 shadow-md"
       style={{
         backgroundColor: cssStyles.backgroundColor,
         color: cssStyles.color,
