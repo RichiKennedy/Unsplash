@@ -22,7 +22,7 @@ const SearchBar = ({ classNames }: SearchBarProps) => {
 
   const searchBarClassnames =
     classNames ||
-    'flex items-center border-2 rounded-full py-2 shadow-sm w-[70vw] sm:w-[50vw] bg-gray-100'
+    'flex items-center border-2 rounded-full py-2 shadow-sm w-[70vw] sm:w-[50vw] h-7 sm:h-9 bg-gray-100'
 
   return (
     <section>

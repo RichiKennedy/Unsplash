@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Unsplash = () => (
   <Link to="/">
-    <FaUnsplash className="h-11 w-11 sm:h-14 sm:w-14 cursor-pointer" />
+    <FaUnsplash className="h-7 w-7 sm:h-9 sm:w-9 cursor-pointer" />
   </Link>
 )
 

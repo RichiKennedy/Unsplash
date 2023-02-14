@@ -21,7 +21,7 @@ const Hero = ({ categoryID }: HeroType) => {
   return (
     <div
       data-test="hero-wrapper"
-      className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[85vh] bg-fixed z-10"
+      className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[70vh] bg-fixed z-10"
     >
       {!heroLoaded ? <Skeleton /> : null}
       <img
@@ -40,7 +40,7 @@ const Hero = ({ categoryID }: HeroType) => {
               : 'h-[70%] sm:h-[70%] sm:p-16 flex items-center justify-end flex-col text-left '
           }
         >
-          <section className="w-[100vw] p-2 h-[80%] flex flex-col justify-end sm:justify-center min-w-[250px] sm:w-[70vw] max-w-[800px] text-left gap-2 sm:pb-9">
+          <section className="h-[80%] w-[100vw] min-w-[250px] sm:w-[70vw] max-w-[800px] flex flex-col justify-end sm:justify-center text-left p-2 gap-2 translate-y-10">
             <h1 className="w-full text-3xl sm:text-4xl lg:text-5xl font-bold">
               {!categoryID ? 'Unsplash' : categoryID}
             </h1>
