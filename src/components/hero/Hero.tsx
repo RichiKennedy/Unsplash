@@ -40,7 +40,7 @@ const Hero = ({ categoryID }: HeroType) => {
               : 'h-[70%] sm:h-[70%] sm:p-16 flex items-center justify-end flex-col text-left '
           }
         >
-          <section className="h-[80%] w-[100vw] min-w-[250px] sm:w-[70vw] max-w-[800px] flex flex-col justify-end sm:justify-center text-left p-2 gap-2 translate-y-10">
+          <section className="h-[80%] w-[100vw] min-w-[250px] sm:w-[70vw] max-w-[800px] flex flex-col justify-end sm:justify-center text-left p-2 gap-2 sm:translate-y-10">
             <h1 className="w-full text-3xl sm:text-4xl lg:text-5xl font-bold">
               {!categoryID ? 'Unsplash' : categoryID}
             </h1>
